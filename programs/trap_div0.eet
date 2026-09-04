@@ -1,0 +1,12 @@
+; trap_div0.eet -- a trap must not swallow output written before it.
+.data msg "about to divide by zero: "
+
+.func main 0 0
+    pushs msg
+    prints
+    push 1
+    push 0
+    div                     ; T04 -- stderr gets one line, stdout keeps the prefix
+    push 0
+    ret
+.end

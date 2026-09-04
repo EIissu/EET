@@ -1,0 +1,13 @@
+; trap_global.eet -- a computed global index is bounds checked at run time.
+.globals 8
+.data msg "writing past the globals array\n"
+
+.func main 0 0
+    pushs msg
+    prints
+    push 99
+    push 8                  ; valid indices are 0..7
+    gstorex                 ; T07
+    push 0
+    ret
+.end

@@ -1,0 +1,58 @@
+; fib.eet -- recursion, the hard way.
+;
+; Exercises the calling convention (spec section 5.4): every `call` gets a fresh frame
+; with its own private operand stack, and `ret` hands exactly one value back.
+
+.data open  "fib("
+.data close ") = "
+.data nl    "\n"
+
+; fib(n) -- naive double recursion, so the call stack actually gets a workout.
+.func fib 1 1
+    load 0
+    push 2
+    lt
+    jz recurse          ; n >= 2 -> recurse
+    load 0              ; base case: fib(0)=0, fib(1)=1
+    ret
+recurse:
+    load 0
+    push 1
+    sub
+    call fib            ; fib(n-1)
+    load 0
+    push 2
+    sub
+    call fib            ; fib(n-2)
+    add
+    ret
+.end
+
+.func main 0 1
+    push 0
+    store 0             ; local 0 = n
+loop:
+    load 0
+    push 21
+    ge
+    jnz done
+    pushs open
+    prints
+    load 0
+    print
+    pushs close
+    prints
+    load 0
+    call fib
+    print
+    pushs nl
+    prints
+    load 0
+    push 1
+    add
+    store 0
+    jmp loop
+done:
+    push 0
+    ret
+.end

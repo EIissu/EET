@@ -1,0 +1,17 @@
+; trap_user.eet -- the `trap` instruction, used here as an assertion failure.
+.data msg "checking an invariant\n"
+
+.func main 0 0
+    pushs msg
+    prints
+    push 2
+    push 2
+    add
+    push 5
+    eq
+    jnz ok                  ; 2 + 2 == 5 ?
+    trap 7                  ; T10 with user code 7
+ok:
+    push 0
+    ret
+.end

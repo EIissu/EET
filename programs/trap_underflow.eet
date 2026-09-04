@@ -1,0 +1,24 @@
+; trap_underflow.eet -- each frame has a private operand stack, so a callee cannot
+; reach into its caller's values. `take` pops one more than it was given.
+.data msg "the callee will over-pop\n"
+
+.func take 1 1
+    load 0
+    pop
+    pop                     ; T01 -- the caller's stack is not visible here
+    push 0
+    ret
+.end
+
+.func main 0 0
+    pushs msg
+    prints
+    push 111
+    push 222
+    push 333
+    push 42
+    call take
+    pop
+    push 0
+    ret
+.end

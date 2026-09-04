@@ -1,0 +1,99 @@
+; banner.eet -- draw the repository name from a 5x7 bitmap font in the data section.
+;
+; A small excuse to exercise `dload`: the glyphs are seven bytes each, one per scanline,
+; with the leftmost pixel in bit 4.
+
+.globals 3
+
+.data glyph_e 0x1F, 0x10, 0x1E, 0x10, 0x10, 0x10, 0x1F
+.data glyph_t 0x1F, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04
+.data tagline "\n  Everything Everywhere, Together.\n  One spec. Five runtimes. Zero disagreements.\n"
+
+; scanline(base, row) -> the byte for that row of that glyph
+.func scanline 2 2
+    load 0
+    load 1
+    add
+    dload
+    ret
+.end
+
+.func main 0 5
+    push glyph_e            ; the word is E, E, T
+    push 0
+    gstorex
+    push glyph_e
+    push 1
+    gstorex
+    push glyph_t
+    push 2
+    gstorex
+
+    push 0
+    store 0                 ; row
+row:
+    load 0
+    push 7
+    ge
+    jnz done
+    push 0
+    store 1                 ; letter
+letter:
+    load 1
+    push 3
+    ge
+    jnz end_of_row
+    load 1
+    gloadx
+    load 0
+    call scanline
+    store 4                 ; the scanline byte
+    push 4
+    store 2                 ; bit, counting down from the left
+bit:
+    load 2
+    push 0
+    lt
+    jnz gap
+    load 4
+    load 2
+    shr
+    push 1
+    and
+    jz blank
+    push '#'
+    printc
+    jmp next_bit
+blank:
+    push ' '
+    printc
+next_bit:
+    load 2
+    push 1
+    sub
+    store 2
+    jmp bit
+gap:
+    push ' '
+    printc
+    push ' '
+    printc
+    load 1
+    push 1
+    add
+    store 1
+    jmp letter
+end_of_row:
+    push 10
+    printc
+    load 0
+    push 1
+    add
+    store 0
+    jmp row
+done:
+    pushs tagline
+    prints
+    push 0
+    ret
+.end

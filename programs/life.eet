@@ -1,0 +1,309 @@
+; life.eet -- Conway's Game of Life on a 40x20 torus.
+;
+; The globals array doubles as a heap: slots 0..799 are the current generation and
+; 800..1599 are the next one. Wrapping at the edges uses `mod`, whose result follows the
+; sign of the dividend (spec section 7.2) -- so -1 mod 40 is -1, and the +40 dance below
+; is what turns that back into 39.
+
+.globals 1600
+
+.data gen_label "generation "
+.data rule      " -- glider, blinker and block on a 40x20 torus\n"
+
+; idx(x, y) -> the wrapped linear index y*40 + x
+.func idx 2 2
+    load 0
+    push 40
+    mod
+    push 40
+    add
+    push 40
+    mod
+    store 0
+    load 1
+    push 20
+    mod
+    push 20
+    add
+    push 20
+    mod
+    store 1
+    load 1
+    push 40
+    mul
+    load 0
+    add
+    ret
+.end
+
+; neighbours(x, y) -> how many of the eight surrounding cells are alive
+.func neighbours 2 5
+    push 0
+    store 2                 ; count
+    push -1
+    store 3                 ; dx
+dx_loop:
+    load 3
+    push 2
+    ge
+    jnz counted
+    push -1
+    store 4                 ; dy
+dy_loop:
+    load 4
+    push 2
+    ge
+    jnz next_dx
+    load 3
+    jnz sample
+    load 4
+    jz next_dy              ; skip the cell itself
+sample:
+    load 0
+    load 3
+    add
+    load 1
+    load 4
+    add
+    call idx
+    gloadx
+    load 2
+    add
+    store 2
+next_dy:
+    load 4
+    push 1
+    add
+    store 4
+    jmp dy_loop
+next_dx:
+    load 3
+    push 1
+    add
+    store 3
+    jmp dx_loop
+counted:
+    load 2
+    ret
+.end
+
+; step() -- write the next generation into the high half, then copy it down
+.func step 0 4
+    push 0
+    store 1                 ; y
+step_y:
+    load 1
+    push 20
+    ge
+    jnz copy_back
+    push 0
+    store 0                 ; x
+step_x:
+    load 0
+    push 40
+    ge
+    jnz step_next_y
+    load 0
+    load 1
+    call neighbours
+    store 2                 ; n
+    load 0
+    load 1
+    call idx
+    gloadx
+    store 3                 ; alive
+
+    push 0                  ; the cell's next state, assumed dead
+    load 2
+    push 3
+    eq
+    jz maybe_survives       ; exactly three neighbours always gives birth
+    pop
+    push 1
+    jmp write_cell
+maybe_survives:
+    load 2
+    push 2
+    eq
+    jz write_cell           ; two neighbours only sustains an already-live cell
+    load 3
+    jz write_cell
+    pop
+    push 1
+write_cell:
+    load 0
+    load 1
+    call idx
+    push 800
+    add
+    gstorex
+    load 0
+    push 1
+    add
+    store 0
+    jmp step_x
+step_next_y:
+    load 1
+    push 1
+    add
+    store 1
+    jmp step_y
+
+copy_back:
+    push 0
+    store 0
+copy_loop:
+    load 0
+    push 800
+    ge
+    jnz stepped
+    load 0
+    push 800
+    add
+    gloadx
+    load 0
+    gstorex
+    load 0
+    push 1
+    add
+    store 0
+    jmp copy_loop
+stepped:
+    push 0
+    ret
+.end
+
+.func render 0 2
+    push 0
+    store 1
+render_y:
+    load 1
+    push 20
+    ge
+    jnz rendered
+    push 0
+    store 0
+render_x:
+    load 0
+    push 40
+    ge
+    jnz end_of_row
+    load 0
+    load 1
+    call idx
+    gloadx
+    jz dead
+    push 'O'
+    printc
+    jmp render_next
+dead:
+    push '.'
+    printc
+render_next:
+    load 0
+    push 1
+    add
+    store 0
+    jmp render_x
+end_of_row:
+    push 10
+    printc
+    load 1
+    push 1
+    add
+    store 1
+    jmp render_y
+rendered:
+    push 0
+    ret
+.end
+
+; live(x, y) -- seed one cell
+.func live 2 2
+    push 1
+    load 0
+    load 1
+    call idx
+    gstorex
+    push 0
+    ret
+.end
+
+.func main 0 1
+    push 1
+    push 0
+    call live
+    pop                     ; glider
+    push 2
+    push 1
+    call live
+    pop
+    push 0
+    push 2
+    call live
+    pop
+    push 1
+    push 2
+    call live
+    pop
+    push 2
+    push 2
+    call live
+    pop
+
+    push 20
+    push 10
+    call live
+    pop                     ; blinker
+    push 21
+    push 10
+    call live
+    pop
+    push 22
+    push 10
+    call live
+    pop
+
+    push 34
+    push 4
+    call live
+    pop                     ; block
+    push 35
+    push 4
+    call live
+    pop
+    push 34
+    push 5
+    call live
+    pop
+    push 35
+    push 5
+    call live
+    pop
+
+    push 0
+    store 0
+generation:
+    load 0
+    push 6
+    ge
+    jnz finished
+    pushs gen_label
+    prints
+    load 0
+    print
+    pushs rule
+    prints
+    call render
+    pop
+    call step
+    pop
+    load 0
+    push 1
+    add
+    store 0
+    jmp generation
+finished:
+    push 0
+    ret
+.end

@@ -1,0 +1,13 @@
+; hello.eet -- the smallest interesting EET program.
+;
+; `pushs` is sugar: it pushes the address of a .data symbol and then its length,
+; which is exactly the pair `prints` wants (spec section 4.6).
+
+.data greeting "Hello from EET!\n"
+
+.func main 0 0
+    pushs greeting
+    prints
+    push 0
+    ret
+.end

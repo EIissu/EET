@@ -1,0 +1,20 @@
+; trap_depth.eet -- unbounded recursion hits the 256 frame ceiling deterministically.
+.data msg "recursing without a base case\n"
+
+.func down 1 1
+    load 0
+    push 1
+    add
+    call down               ; T03 at depth 256
+    ret
+.end
+
+.func main 0 0
+    pushs msg
+    prints
+    push 0
+    call down
+    pop
+    push 0
+    ret
+.end
