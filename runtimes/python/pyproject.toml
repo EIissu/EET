@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eetvm"
+version = "1.0.0"
+description = "The EET virtual machine: reference runtime, assembler and disassembler"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "GPL-3.0-or-later" }
+keywords = ["virtual-machine", "bytecode", "assembler", "interpreter", "conformance"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Interpreters",
+    "Topic :: Software Development :: Assemblers",
+]
+
+# Deliberately empty. The toolchain runs anywhere Python does, with nothing to install.
+dependencies = []
+
+[project.scripts]
+eet = "eetvm.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/EIissu/EET"
+Specification = "https://github.com/EIissu/EET/blob/main/spec/eet-vm.md"
+
+[tool.setuptools]
+packages = ["eetvm"]
