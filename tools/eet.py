@@ -23,12 +23,17 @@ from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import malformed  # noqa: E402
 import runtimes as rt  # noqa: E402
 
 ROOT = rt.ROOT
 PROGRAMS = ROOT / "programs"
 GOLDEN = ROOT / "tests" / "conformance" / "golden"
 BUILT = rt.BUILD / "programs"
+MALFORMED = rt.BUILD / "malformed"
+
+#: Spec section 2: a rejected image says this and exits 65. The reason text is free-form.
+BAD_BINARY_PREFIX = b"eet: bad binary:"
 
 sys.path.insert(0, str(ROOT / "runtimes" / "python"))
 from eetvm import AsmError, assemble  # noqa: E402
@@ -171,6 +176,70 @@ def build_runtimes(keys: Sequence[str], quiet: bool = False) -> Dict[str, Option
             else:
                 print(f"  {green('ok')}   {runtime.label}")
     return results
+
+
+# --- the malformed corpus --------------------------------------------------------------
+
+
+def write_malformed():
+    """Materialise the hostile images so runtimes can be handed a real file path."""
+    MALFORMED.mkdir(parents=True, exist_ok=True)
+    written = []
+    for case in malformed.CASES:
+        path = MALFORMED / f"{case.name}.eetb"
+        path.write_bytes(case.blob)
+        written.append((case, path))
+    return written
+
+
+def check_malformed(usable: Sequence) -> List[str]:
+    """Every runtime must reject every malformed image with exit 65 and the right prefix.
+
+    Nothing in ``programs/`` can test this: the assembler only emits valid modules. A
+    runtime that skips its header checks passes the whole conformance matrix and still
+    reads past the end of a buffer the first time it is handed a hostile file.
+    """
+    from eetvm.isa import EXIT_LOAD_ERROR
+
+    failures: List[str] = []
+    cases = write_malformed()
+    width = max(len(c.name) for c, _ in cases) + 2
+
+    print()
+    print(bold("malformed input"))
+    print(dim(" " * width + "".join(f"{r.label:<16}" for r in usable)))
+
+    for case, path in cases:
+        row = f"{case.name:<{width}}"
+        for runtime in usable:
+            try:
+                stdout, stderr, status = rt.run_program(runtime, path)
+            except (OSError, subprocess.TimeoutExpired) as error:
+                row += f"{red('ERROR'):<16}"
+                failures.append(f"{case.name} / {runtime.label}: {error}")
+                continue
+
+            problems = []
+            if status != EXIT_LOAD_ERROR:
+                problems.append(f"expected exit {EXIT_LOAD_ERROR}, got {status}")
+            if not stderr.startswith(BAD_BINARY_PREFIX):
+                shown = stderr[:120].decode("utf-8", "replace").strip() or "(nothing)"
+                problems.append(
+                    'stderr should start with "eet: bad binary:", got: ' + shown
+                )
+            if stdout:
+                problems.append(f"wrote {len(stdout)} bytes to stdout; it should write none")
+
+            if problems:
+                row += f"{red('FAIL'):<16}"
+                detail = "\n".join("      " + item for item in problems)
+                failures.append(
+                    f"{bold(case.name)} / {bold(runtime.label)}  ({case.why})\n" + detail
+                )
+            else:
+                row += f"{green('ok'):<16}"
+        print(row)
+    return failures
 
 
 # --- commands --------------------------------------------------------------------------
@@ -321,6 +390,14 @@ def cmd_verify(args) -> int:
                 row += f"{green('ok'):<16}"
         print(row)
 
+    malformed_checks = 0
+    if usable and not args.no_malformed:
+        before = len(failures)
+        failures.extend(check_malformed(usable))
+        malformed_checks = (
+            len(malformed.CASES) * len(usable) - (len(failures) - before)
+        )
+
     for runtime in skipped:
         print(dim(f"  skipped {runtime.label}: {runtime.unavailable()}"))
 
@@ -342,7 +419,8 @@ def cmd_verify(args) -> int:
         return 1
 
     print(green(bold(
-        f"all {checks} checks passed across {len(usable)} runtime(s)"
+        f"all {checks + malformed_checks} checks passed across {len(usable)} runtime(s)"
+        f"  ({checks} program, {malformed_checks} malformed)"
     )))
     return 0
 
@@ -443,6 +521,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_verify.add_argument("-r", "--runtime", action="append", choices=list(rt.BY_KEY))
     p_verify.add_argument("--no-build", action="store_true",
                           help="assume the runtimes are already built")
+    p_verify.add_argument("--no-malformed", action="store_true",
+                          help="skip the malformed-input corpus")
 
     p_bench = sub.add_parser("bench", help="time the same bytecode on every runtime")
     p_bench.add_argument("program", nargs="*", help="defaults to a representative set")

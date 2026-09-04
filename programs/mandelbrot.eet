@@ -5,7 +5,7 @@
 ; one out of `mul` and `shr`.
 ;
 ; This is the program that matters most for conformance: it leans on `mul`, on arithmetic
-; right shift of negative numbers, and on truncating `div`, which is exactly where five
+; right shift of negative numbers, and on truncating `div`, which is exactly where four
 ; languages will disagree if anybody gets section 7 wrong.
 
 .data palette " .:-=+*#%@"

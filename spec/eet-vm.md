@@ -2,12 +2,12 @@
 
 > **Status:** Frozen. Every runtime in `runtimes/` implements *this document*, not each other.
 > If a runtime disagrees with the spec, the runtime is wrong. If the spec is ambiguous, the
-> spec is wrong — file an issue, because an ambiguity here is a bug in all five runtimes at once.
+> spec is wrong — file an issue, because an ambiguity here is a bug in every runtime at once.
 
 EET is a small stack machine. It is deliberately boring: no floats, no garbage collector, no
-undefined behaviour. Every observable action is pinned down to the byte, so that five
-independent implementations — in Python, Java, C#, C++ and .NET — produce *identical* output
-for identical input. That property is the entire point of this repository.
+undefined behaviour. Every observable action is pinned down to the byte, so that four
+independent implementations — in Python, Java, C# and C++ — produce *identical* output for
+identical input. That property is the entire point of this repository.
 
 ---
 
