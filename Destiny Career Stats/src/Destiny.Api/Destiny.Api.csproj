@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <RootNamespace>Eet.Destiny.Api</RootNamespace>
+    <!-- The brief names the executable, not the folder. -->
+    <AssemblyName>destiny-career-stats</AssemblyName>
+    <UserSecretsId>eet-destiny-career-stats</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Destiny.Client/Destiny.Client.csproj" />
+  </ItemGroup>
+
+</Project>

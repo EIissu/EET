@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The Halo Infinite side of the tracker: endpoint resolution, the authenticated HTTP
+    stack, the raw response shapes, and the mapping into Eet.Trackers.Core.
+
+    Nothing here implements IXboxAuth. The token chain lives in shared/src/Eet.Xbox and
+    this project only ever sees the interface.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Eet.Halo.Client</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../Career Stats Shared/src/Eet.Trackers.Core/Eet.Trackers.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The mapping helpers are internal because nothing outside this assembly should call
+         them, but they are exactly what the mapping tests need to pin. -->
+    <InternalsVisibleTo Include="Halo.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      343's own settings service is the source of truth for which host serves an endpoint
+      and whether that endpoint is clearance-aware. Embedding the captured manifest means
+      those facts are data we read, not constants we retyped and can get wrong.
+    -->
+    <EmbeddedResource Include="../../../Career Stats Shared/halo-endpoint-manifest.json"
+                      LogicalName="Eet.Halo.Client.halo-endpoint-manifest.json" />
+  </ItemGroup>
+</Project>

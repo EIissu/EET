@@ -1,0 +1,44 @@
+{
+ "_note": "SYNTHETIC FIXTURE - generated data, not a real player and not a real capture. Shaped to match the wire format of 343's Halo Infinite services so that loading it exercises the tracker's real mapping code. Do not cite any number in here as fact. Endpoint: GET skill /hi/playlist/{playlistId}/csrs?players=xuid(...). CLEARANCE-AWARE. Playlist id matches the Ranked Arena default in HaloOptions.",
+ "Value": [
+  {
+   "Id": "xuid(2814669301245176)",
+   "ResultCode": 0,
+   "Result": {
+    "Current": {
+     "Value": 1706,
+     "MeasurementMatchesRemaining": 0,
+     "Tier": "Onyx",
+     "TierStart": 1500,
+     "SubTier": 0,
+     "NextTier": "Onyx",
+     "NextTierStart": 1600,
+     "NextSubTier": 1,
+     "InitialMeasurementMatches": 10
+    },
+    "SeasonMax": {
+     "Value": 1710,
+     "MeasurementMatchesRemaining": 0,
+     "Tier": "Onyx",
+     "TierStart": 1500,
+     "SubTier": 0,
+     "NextTier": "Onyx",
+     "NextTierStart": 1600,
+     "NextSubTier": 1,
+     "InitialMeasurementMatches": 10
+    },
+    "AllTimeMax": {
+     "Value": 1710,
+     "MeasurementMatchesRemaining": 0,
+     "Tier": "Onyx",
+     "TierStart": 1500,
+     "SubTier": 0,
+     "NextTier": "Onyx",
+     "NextTierStart": 1600,
+     "NextSubTier": 1,
+     "InitialMeasurementMatches": 10
+    }
+   }
+  }
+ ]
+}

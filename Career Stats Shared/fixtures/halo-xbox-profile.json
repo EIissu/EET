@@ -1,0 +1,35 @@
+{
+ "_note": "SYNTHETIC FIXTURE - generated data, not a real player and not a real capture. Shaped to match the wire format of 343's Halo Infinite services so that loading it exercises the tracker's real mapping code. Do not cite any number in here as fact. Endpoint: GET profile.xboxlive.com /users/gt({gamertag})/profile/settings. camelCase, unlike the Halo services. The gamertag below begins with U+0415 CYRILLIC CAPITAL LETTER IE, which renders identically to a Latin E and cannot be typed on a normal keyboard: searching the ASCII spelling only works because Identity.LooksTheSame folds the confusable. A decoy profile is included first so that a resolver which takes the first result returns the wrong player.",
+ "profileUsers": [
+  {
+   "id": "2533274812345678",
+   "hostId": "2533274812345678",
+   "settings": [
+    {
+     "id": "Gamertag",
+     "value": "Elissu Decoy"
+    },
+    {
+     "id": "GameDisplayPicRaw",
+     "value": "https://images-eds-ssl.xboxlive.com/synthetic/decoy.png"
+    }
+   ],
+   "isSponsoredUser": false
+  },
+  {
+   "id": "2814669301245176",
+   "hostId": "2814669301245176",
+   "settings": [
+    {
+     "id": "Gamertag",
+     "value": "Еlissu"
+    },
+    {
+     "id": "GameDisplayPicRaw",
+     "value": "https://images-eds-ssl.xboxlive.com/synthetic/elissu.png"
+    }
+   ],
+   "isSponsoredUser": false
+  }
+ ]
+}

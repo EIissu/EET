@@ -1,0 +1,8 @@
+<Project>
+  <!--
+    The three career-stat folders sit side by side at the repository root, so there is no
+    common parent directory for MSBuild to pick shared settings up from. Each one imports
+    the same file instead, which keeps the settings in exactly one place.
+  -->
+  <Import Project="$(MSBuildThisFileDirectory)../Career Stats Shared/Common.Build.props" />
+</Project>

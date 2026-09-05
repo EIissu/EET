@@ -1,10 +1,3 @@
-# Everything the toolchain generates lives under build/. The glob is deliberately loose:
-# a mistyped or unexpanded shell variable in a build command produces directories like
-# `build$name`, and those are artifacts too, not source.
-/build/
-/build*/
-
-# Python
 __pycache__/
 *.py[cod]
 .venv/
@@ -12,6 +5,27 @@ venv/
 *.egg-info/
 .pytest_cache/
 
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.o
+*.obj
+*.exe
+*.pdb
+*.ilk
+
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Everything the toolchain generates lives under build/. The glob is deliberately loose:
+# a mistyped or unexpanded shell variable in a build command produces directories like
+# `build$name`, and those are artifacts too, not source.
+/build/
+/build*/
+
+# Python
 # Java
 *.class
 
@@ -22,20 +36,47 @@ obj/
 .vs/
 
 # C / C++ / CMake
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-*.o
-*.obj
-*.exe
-*.pdb
-*.ilk
-
 # Assembled modules never belong in the tree; regenerate with `python tools/eet.py asm`.
 *.eetb
 
 # Editors
-.idea/
-.vscode/
-*.swp
-.DS_Store
+# --- secrets -------------------------------------------------------------------------
+# The career trackers hold a Bungie API key, an Azure AD client id, and a cached Xbox
+# refresh token. None of those belong in a public repository, and a refresh token is a
+# live credential -- treat a leak as a compromise and revoke it, do not just delete the
+# commit.
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+*.secrets.json
+secrets.json
+.env
+.env.*
+!.env.example
+*.pfx
+*.key
+*.pem
+
+# The Xbox token cache, if anyone points it at the working tree instead of LOCALAPPDATA.
+# Both spellings: the store defaults to an 'eet-trackers' directory, and the adversarial
+# review found the dot-prefixed pattern alone did not cover it.
+.eet-trackers/
+eet-trackers/
+*.tokencache.json
+
+# --- build output --------------------------------------------------------------------
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+*.suo
+
+# Local API response caches -- regenerable, sometimes large, occasionally contain a
+# player's full match history.
+.cache/
+trackers/**/cache/
+
+# --- Python ---------------------------------------------------------------------------
+# --- Java -----------------------------------------------------------------------------
+
+# --- C / C++ / CMake -------------------------------------------------------------------
+# --- editors ---------------------------------------------------------------------------

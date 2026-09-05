@@ -1,0 +1,1889 @@
+{
+ "_note": "SYNTHETIC SAMPLE DATA. Generated offline for the EET dashboard; no live API was called and no credentials exist. Numbers are plausible, not real. The shape is exactly what GET /api/career returns (Eet.Trackers.Core.CareerSnapshot).",
+ "player": {
+  "handle": "Іlissu",
+  "id": "2533274805793279",
+  "platform": "Xbox"
+ },
+ "game": "HaloInfinite",
+ "generatedAt": "2026-09-03T22:20:00Z",
+ "isFixture": true,
+ "source": "fixture:halo-infinite",
+ "headline": [
+  {
+   "key": "kd",
+   "label": "K/D",
+   "value": 1.2608,
+   "formatted": "1.26",
+   "better": "Higher",
+   "delta": 0.106,
+   "deltaFormatted": "+0.11",
+   "note": "Last 25 matches vs the 25 before",
+   "improved": true
+  },
+  {
+   "key": "winRate",
+   "label": "Win rate",
+   "value": 0.56,
+   "formatted": "56.0%",
+   "better": "Higher",
+   "delta": -0.04,
+   "deltaFormatted": "-4.0%",
+   "note": "Last 25 matches vs the 25 before",
+   "improved": false
+  },
+  {
+   "key": "accuracy",
+   "label": "Accuracy",
+   "value": 0.4493,
+   "formatted": "44.9%",
+   "better": "Higher",
+   "delta": 0.0134,
+   "deltaFormatted": "+1.3%",
+   "note": "Shots on target, last 25 matches",
+   "improved": true
+  },
+  {
+   "key": "killsPerMatch",
+   "label": "Kills / match",
+   "value": 14.84,
+   "formatted": "14.84",
+   "better": "Higher",
+   "delta": 2.28,
+   "deltaFormatted": "+2.28",
+   "note": "Last 25 matches vs the 25 before",
+   "improved": true
+  },
+  {
+   "key": "deathsPerMatch",
+   "label": "Deaths / match",
+   "value": 11.64,
+   "formatted": "11.64",
+   "better": "Lower",
+   "delta": 0.92,
+   "deltaFormatted": "+0.92",
+   "note": "Lower is better",
+   "improved": false
+  },
+  {
+   "key": "assistsPerMatch",
+   "label": "Assists / match",
+   "value": 6.6,
+   "formatted": "6.60",
+   "better": "Higher",
+   "delta": 0,
+   "deltaFormatted": "0.00",
+   "note": "Unchanged against the previous 25",
+   "improved": false
+  },
+  {
+   "key": "timePlayed",
+   "label": "Time played",
+   "value": 23.6417,
+   "formatted": "23h 38m",
+   "better": "Neutral",
+   "note": "Lifetime total"
+  }
+ ],
+ "trends": [
+  {
+   "key": "kd",
+   "label": "K/D",
+   "unit": "ratio",
+   "better": "Higher",
+   "points": [
+    {
+     "date": "2026-06-06",
+     "value": 1.1349206349206349,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-08",
+     "value": 0.551948051948052,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-09",
+     "value": 1.1214285714285714,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-11",
+     "value": 0.8636363636363635,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-13",
+     "value": 1.1161616161616161,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-14",
+     "value": 0.8787878787878788,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-15",
+     "value": 0.75,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-18",
+     "value": 1.0769230769230769,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-19",
+     "value": 0.5,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-24",
+     "value": 0.75,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-25",
+     "value": 1.2,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-26",
+     "value": 1.118096189524761,
+     "samples": 7
+    },
+    {
+     "date": "2026-06-27",
+     "value": 1.4923076923076923,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-28",
+     "value": 1.180952380952381,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-30",
+     "value": 0.8977272727272727,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-02",
+     "value": 1.0714285714285714,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-03",
+     "value": 1.3083333333333333,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-05",
+     "value": 0.9801587301587301,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-09",
+     "value": 1.0416666666666665,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-11",
+     "value": 1.1,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-12",
+     "value": 1.2063492063492063,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-16",
+     "value": 1.3969017094017095,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-19",
+     "value": 0.9706293706293707,
+     "samples": 5
+    },
+    {
+     "date": "2026-07-21",
+     "value": 1.2727272727272727,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-24",
+     "value": 1.1120039682539682,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-25",
+     "value": 1.0044642857142856,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-26",
+     "value": 1.2746697746697746,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-29",
+     "value": 1.2202380952380953,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-30",
+     "value": 1.1220238095238095,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-01",
+     "value": 0.9380341880341881,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-05",
+     "value": 1.0732323232323233,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-07",
+     "value": 1.125,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-08",
+     "value": 1.2555555555555555,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-10",
+     "value": 1.1944444444444444,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-15",
+     "value": 1.3680555555555556,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-17",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-21",
+     "value": 1.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-22",
+     "value": 1.1844397759103642,
+     "samples": 5
+    },
+    {
+     "date": "2026-08-23",
+     "value": 1.3321937321937323,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-24",
+     "value": 1.3333333333333333,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-26",
+     "value": 1.2828282828282829,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-27",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-29",
+     "value": 1.2686868686868686,
+     "samples": 6
+    },
+    {
+     "date": "2026-09-01",
+     "value": 1.4833333333333334,
+     "samples": 2
+    },
+    {
+     "date": "2026-09-02",
+     "value": 1.0413105413105412,
+     "samples": 3
+    }
+   ],
+   "smoothed": [
+    1.1349206349206349,
+    0.9288087015877596,
+    0.9969101096656137,
+    0.9497907248799055,
+    1.0218314340300156,
+    0.959891757686349,
+    0.9074188182647618,
+    0.9497948829293406,
+    0.8373461621970054,
+    0.8155096216477541,
+    0.9819988392296217,
+    1.072018774973567,
+    1.2206133467258233,
+    1.2034396447766103,
+    1.0505834587519414,
+    1.055794736921099,
+    1.1820640351272163,
+    1.1106797299768392,
+    1.0862799274482995,
+    1.0897099455862245,
+    1.1402162270359142,
+    1.251364301291635,
+    1.0944287041367566,
+    1.1390033462843856,
+    1.125503657269177,
+    1.0649839714917313,
+    1.169826873080753,
+    1.1876499315984324,
+    1.154836870561121,
+    1.0609585552226526,
+    1.0662732526709184,
+    1.0870362933076299,
+    1.146616849855661,
+    1.167326805813556,
+    1.2676911806845559,
+    1.2007683855134168,
+    1.3065627373878477,
+    1.2382939265185373,
+    1.2789537350811078,
+    1.2925486346441641,
+    1.2891119713019,
+    1.216833978476425,
+    1.248587259152461,
+    1.3315825296075685,
+    1.205891071671446
+   ],
+   "slope": 0.0032188595733373547,
+   "slopePerWeek": 0.022532017013361483,
+   "direction": "improving"
+  },
+  {
+   "key": "accuracy",
+   "label": "Accuracy",
+   "unit": "%",
+   "better": "Higher",
+   "points": [
+    {
+     "date": "2026-06-06",
+     "value": 0.4030666666666667,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-08",
+     "value": 0.36655,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-09",
+     "value": 0.45215,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-11",
+     "value": 0.40105,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-13",
+     "value": 0.4052,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-14",
+     "value": 0.40893333333333337,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-15",
+     "value": 0.4629,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-18",
+     "value": 0.4067,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-19",
+     "value": 0.412,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-24",
+     "value": 0.4382,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-25",
+     "value": 0.4184333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-26",
+     "value": 0.4062571428571428,
+     "samples": 7
+    },
+    {
+     "date": "2026-06-27",
+     "value": 0.4064,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-28",
+     "value": 0.3841333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-30",
+     "value": 0.427675,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-02",
+     "value": 0.3906,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-03",
+     "value": 0.397725,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-05",
+     "value": 0.43679999999999997,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-09",
+     "value": 0.36055000000000004,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-11",
+     "value": 0.5079,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-12",
+     "value": 0.4115,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-16",
+     "value": 0.4441333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-19",
+     "value": 0.41819999999999996,
+     "samples": 5
+    },
+    {
+     "date": "2026-07-21",
+     "value": 0.4498,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-24",
+     "value": 0.43635,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-25",
+     "value": 0.41547500000000004,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-26",
+     "value": 0.427875,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-29",
+     "value": 0.4193,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-30",
+     "value": 0.43845,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-01",
+     "value": 0.41133333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-05",
+     "value": 0.42660000000000003,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-07",
+     "value": 0.4595,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-08",
+     "value": 0.4004,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-10",
+     "value": 0.4709666666666667,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-15",
+     "value": 0.45809999999999995,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-17",
+     "value": 0.3968,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-21",
+     "value": 0.44384999999999997,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-22",
+     "value": 0.41807999999999995,
+     "samples": 5
+    },
+    {
+     "date": "2026-08-23",
+     "value": 0.5068333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-24",
+     "value": 0.4168,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-26",
+     "value": 0.43905,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-27",
+     "value": 0.4381,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-29",
+     "value": 0.46008333333333334,
+     "samples": 6
+    },
+    {
+     "date": "2026-09-01",
+     "value": 0.4755,
+     "samples": 2
+    },
+    {
+     "date": "2026-09-02",
+     "value": 0.43016666666666664,
+     "samples": 3
+    }
+   ],
+   "smoothed": [
+    0.4030666666666667,
+    0.39015607535350233,
+    0.4120742376084555,
+    0.40817658102328025,
+    0.4068876836319886,
+    0.4077734759362929,
+    0.42155510695221965,
+    0.41784133021416475,
+    0.41638099766062353,
+    0.4218357482454676,
+    0.420362459371406,
+    0.4110326694562578,
+    0.4093947734625,
+    0.398456249018481,
+    0.4130656245092405,
+    0.4074492183819304,
+    0.4025871091909652,
+    0.41468319273849696,
+    0.3955442189021622,
+    0.4236331641766216,
+    0.4183793499740008,
+    0.42953115189291263,
+    0.4231968454189306,
+    0.42984763406419796,
+    0.43309881703209896,
+    0.4242869085160495,
+    0.4260809542580247,
+    0.42368352488864225,
+    0.4310667624443211,
+    0.4225219369873737,
+    0.42428779007095774,
+    0.4367371862816528,
+    0.42389005086715514,
+    0.44427482347044356,
+    0.45118741173522176,
+    0.43759055880141634,
+    0.4398036054603948,
+    0.42765974082893765,
+    0.4619429120377796,
+    0.4506571840283347,
+    0.4465534247598769,
+    0.4444400685699077,
+    0.45401957271532084,
+    0.4616140506132114,
+    0.4479969339230761
+   ],
+   "slope": 0.0005913741234548567,
+   "slopePerWeek": 0.004139618864183996,
+   "direction": "improving"
+  },
+  {
+   "key": "winRate",
+   "label": "Win rate",
+   "unit": "%",
+   "better": "Higher",
+   "points": [
+    {
+     "date": "2026-06-06",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-08",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-09",
+     "value": 0,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-11",
+     "value": 1,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-13",
+     "value": 0,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-14",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-15",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-18",
+     "value": 0,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-19",
+     "value": 0,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-24",
+     "value": 0,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-25",
+     "value": 1,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-26",
+     "value": 0.42857142857142855,
+     "samples": 7
+    },
+    {
+     "date": "2026-06-27",
+     "value": 0,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-28",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-30",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-02",
+     "value": 0,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-03",
+     "value": 1,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-05",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-09",
+     "value": 1,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-11",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-12",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-16",
+     "value": 1,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-19",
+     "value": 0.8,
+     "samples": 5
+    },
+    {
+     "date": "2026-07-21",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-24",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-25",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-26",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-29",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-30",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-01",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-05",
+     "value": 0.6666666666666666,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-07",
+     "value": 0,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-08",
+     "value": 1,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-10",
+     "value": 0.6666666666666666,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-15",
+     "value": 1,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-17",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-21",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-22",
+     "value": 0.8,
+     "samples": 5
+    },
+    {
+     "date": "2026-08-23",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-24",
+     "value": 0,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-26",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-27",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-29",
+     "value": 0.3333333333333333,
+     "samples": 6
+    },
+    {
+     "date": "2026-09-01",
+     "value": 1,
+     "samples": 2
+    },
+    {
+     "date": "2026-09-02",
+     "value": 0.6666666666666666,
+     "samples": 3
+    }
+   ],
+   "smoothed": [
+    0.3333333333333333,
+    0.3922588984322123,
+    0.253574434901121,
+    0.5174757242673301,
+    0.29340216273870046,
+    0.31069286680760155,
+    0.48301965010570114,
+    0.36226473757927585,
+    0.2716985531844569,
+    0.20377391488834268,
+    0.5485499233196056,
+    0.46919160837471924,
+    0.3033073243959258,
+    0.3163089676529526,
+    0.4081544838264763,
+    0.3061158628698572,
+    0.6530579314349286,
+    0.5989437808189169,
+    0.7407385669289079,
+    0.805553925196681,
+    0.6010764108247899,
+    0.7738153920220894,
+    0.7884530328727872,
+    0.8413397746545904,
+    0.6706698873272952,
+    0.5853349436636476,
+    0.5426674718318238,
+    0.5275822424976395,
+    0.5137911212488198,
+    0.4356506069260419,
+    0.5356834951348242,
+    0.34629077914505163,
+    0.5774118906404059,
+    0.616060342364322,
+    0.8080301711821609,
+    0.8560226283866207,
+    0.7301496209926018,
+    0.7691971699212685,
+    0.580462592383218,
+    0.4353469442874135,
+    0.45820525134681434,
+    0.5936539385101107,
+    0.4342407754562043,
+    0.6342668675530847,
+    0.648296392108022
+   ],
+   "slope": 0.0026776244298254174,
+   "slopePerWeek": 0.01874337100877792,
+   "direction": "steady"
+  },
+  {
+   "key": "killsPerMatch",
+   "label": "Kills per match",
+   "unit": "kills",
+   "better": "Higher",
+   "points": [
+    {
+     "date": "2026-06-06",
+     "value": 15.333333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-08",
+     "value": 5.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-09",
+     "value": 9.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-11",
+     "value": 9.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-13",
+     "value": 11.333333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-14",
+     "value": 11.333333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-15",
+     "value": 6,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-18",
+     "value": 14,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-19",
+     "value": 6,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-24",
+     "value": 9,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-25",
+     "value": 13.666666666666666,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-26",
+     "value": 12.571428571428571,
+     "samples": 7
+    },
+    {
+     "date": "2026-06-27",
+     "value": 17,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-28",
+     "value": 16.333333333333332,
+     "samples": 3
+    },
+    {
+     "date": "2026-06-30",
+     "value": 11.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-02",
+     "value": 15,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-03",
+     "value": 14,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-05",
+     "value": 11.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-09",
+     "value": 9,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-11",
+     "value": 11,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-12",
+     "value": 15,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-16",
+     "value": 19,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-19",
+     "value": 11.8,
+     "samples": 5
+    },
+    {
+     "date": "2026-07-21",
+     "value": 14,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-24",
+     "value": 12,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-25",
+     "value": 11,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-26",
+     "value": 14.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-29",
+     "value": 16,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-30",
+     "value": 11.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-01",
+     "value": 11.333333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-05",
+     "value": 12.333333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-07",
+     "value": 12,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-08",
+     "value": 12,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-10",
+     "value": 10,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-15",
+     "value": 17.25,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-17",
+     "value": 6,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-21",
+     "value": 12,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-22",
+     "value": 17,
+     "samples": 5
+    },
+    {
+     "date": "2026-08-23",
+     "value": 16.666666666666668,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-24",
+     "value": 12,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-26",
+     "value": 13,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-27",
+     "value": 3,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-29",
+     "value": 15.5,
+     "samples": 6
+    },
+    {
+     "date": "2026-09-01",
+     "value": 17,
+     "samples": 2
+    },
+    {
+     "date": "2026-09-02",
+     "value": 14.666666666666666,
+     "samples": 3
+    }
+   ],
+   "smoothed": [
+    15.333333333333334,
+    11.856724992499474,
+    11.023496880705379,
+    10.484859392973716,
+    10.852259386373973,
+    11.060570515956801,
+    9.795427886967602,
+    10.846570915225701,
+    9.634928186419277,
+    9.476196139814459,
+    11.290723104846446,
+    12.137830146670758,
+    13.856866783955713,
+    14.929208255647417,
+    13.214604127823709,
+    13.660953095867782,
+    13.830476547933891,
+    13.006528662713755,
+    11.590006869502174,
+    11.44250515212663,
+    12.982945608171928,
+    15.588406587809846,
+    13.470622923622136,
+    13.602967192716601,
+    12.8014835963583,
+    11.900741798179151,
+    13.200370899089576,
+    14.190189260120057,
+    12.845094630060029,
+    12.190482786348317,
+    12.252338887665081,
+    12.163123618352557,
+    12.105450709998168,
+    11.19376380936097,
+    14.221881904680485,
+    12.166411428510363,
+    12.107576103727055,
+    14.842524205429726,
+    15.632401061206256,
+    14.724300795904693,
+    14.11466840310991,
+    11.336001302332432,
+    13.885919327057238,
+    14.986913107557136,
+    14.848242330915786
+   ],
+   "slope": 0.03620378142602751,
+   "slopePerWeek": 0.25342646998219254,
+   "direction": "improving"
+  }
+ ],
+ "recent": [
+  {
+   "id": "hi-0121",
+   "game": "HaloInfinite",
+   "playedAt": "2026-09-02T20:10:09Z",
+   "duration": 795,
+   "mode": "King of the Hill",
+   "map": "Solitude",
+   "playlist": "Team Slayer",
+   "won": true,
+   "kills": 10,
+   "deaths": 10,
+   "assists": 4,
+   "accuracy": 0.4124,
+   "score": 1564,
+   "kda": 1.1333,
+   "extra": {
+    "damageDealt": 8450,
+    "damageTaken": 8425,
+    "headshots": 4
+   },
+   "kd": 1
+  },
+  {
+   "id": "hi-0119",
+   "game": "HaloInfinite",
+   "playedAt": "2026-09-02T19:41:53Z",
+   "duration": 636,
+   "mode": "Strongholds",
+   "map": "Bazaar",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 11,
+   "deaths": 13,
+   "assists": 4,
+   "accuracy": 0.4669,
+   "score": 1577,
+   "kda": 0.9487,
+   "extra": {
+    "damageDealt": 9141,
+    "damageTaken": 10475,
+    "headshots": 4
+   },
+   "kd": 0.8462
+  },
+  {
+   "id": "hi-0120",
+   "game": "HaloInfinite",
+   "playedAt": "2026-09-02T19:15:52Z",
+   "duration": 713,
+   "mode": "Slayer",
+   "map": "Solitude",
+   "playlist": "Quick Play",
+   "won": false,
+   "kills": 23,
+   "deaths": 18,
+   "assists": 11,
+   "accuracy": 0.4112,
+   "score": 2762,
+   "kda": 1.4815,
+   "extra": {
+    "damageDealt": 18051,
+    "damageTaken": 14418,
+    "headshots": 7
+   },
+   "kd": 1.2778
+  },
+  {
+   "id": "hi-0118",
+   "game": "HaloInfinite",
+   "playedAt": "2026-09-01T20:51:19Z",
+   "duration": 768,
+   "mode": "Strongholds",
+   "map": "Bazaar",
+   "playlist": "Team Slayer",
+   "won": true,
+   "kills": 12,
+   "deaths": 8,
+   "assists": 6,
+   "accuracy": 0.4886,
+   "score": 1841,
+   "kda": 1.75,
+   "extra": {
+    "damageDealt": 9941,
+    "damageTaken": 6372,
+    "headshots": 5
+   },
+   "kd": 1.5
+  },
+  {
+   "id": "hi-0117",
+   "game": "HaloInfinite",
+   "playedAt": "2026-09-01T20:49:04Z",
+   "duration": 557,
+   "mode": "Capture the Flag",
+   "map": "Solitude",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 22,
+   "deaths": 15,
+   "assists": 13,
+   "accuracy": 0.4624,
+   "score": 3106,
+   "kda": 1.7556,
+   "extra": {
+    "damageDealt": 17333,
+    "damageTaken": 11664,
+    "headshots": 6
+   },
+   "kd": 1.4667
+  },
+  {
+   "id": "hi-0116",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-29T17:12:22Z",
+   "duration": 834,
+   "mode": "Slayer",
+   "map": "Streets",
+   "playlist": "Ranked Arena",
+   "won": false,
+   "kills": 29,
+   "deaths": 15,
+   "assists": 16,
+   "accuracy": 0.4989,
+   "score": 3544,
+   "kda": 2.2889,
+   "extra": {
+    "damageDealt": 23507,
+    "damageTaken": 11662,
+    "headshots": 10
+   },
+   "kd": 1.9333
+  },
+  {
+   "id": "hi-0115",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-29T16:48:06Z",
+   "duration": 725,
+   "mode": "Strongholds",
+   "map": "Streets",
+   "playlist": "Ranked Arena",
+   "won": false,
+   "kills": 7,
+   "deaths": 10,
+   "assists": 0,
+   "accuracy": 0.452,
+   "score": 771,
+   "kda": 0.7,
+   "extra": {
+    "damageDealt": 5630,
+    "damageTaken": 8125,
+    "headshots": 2
+   },
+   "kd": 0.7
+  },
+  {
+   "id": "hi-0113",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-29T15:57:02Z",
+   "duration": 602,
+   "mode": "King of the Hill",
+   "map": "Live Fire",
+   "playlist": "Ranked Arena",
+   "won": false,
+   "kills": 17,
+   "deaths": 11,
+   "assists": 7,
+   "accuracy": 0.5113,
+   "score": 1991,
+   "kda": 1.7576,
+   "extra": {
+    "damageDealt": 13391,
+    "damageTaken": 9051,
+    "headshots": 8
+   },
+   "kd": 1.5455
+  },
+  {
+   "id": "hi-0114",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-29T15:47:28Z",
+   "duration": 631,
+   "mode": "Strongholds",
+   "map": "Live Fire",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 17,
+   "deaths": 15,
+   "assists": 4,
+   "accuracy": 0.4089,
+   "score": 2265,
+   "kda": 1.2222,
+   "extra": {
+    "damageDealt": 14027,
+    "damageTaken": 11988,
+    "headshots": 5
+   },
+   "kd": 1.1333
+  },
+  {
+   "id": "hi-0112",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-29T15:44:25Z",
+   "duration": 785,
+   "mode": "Oddball",
+   "map": "Live Fire",
+   "playlist": "Ranked Arena",
+   "won": false,
+   "kills": 12,
+   "deaths": 10,
+   "assists": 1,
+   "accuracy": 0.44,
+   "score": 1246,
+   "kda": 1.2333,
+   "extra": {
+    "damageDealt": 9786,
+    "damageTaken": 7628,
+    "headshots": 4
+   },
+   "kd": 1.2
+  },
+  {
+   "id": "hi-0111",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-29T15:33:42Z",
+   "duration": 672,
+   "mode": "King of the Hill",
+   "map": "Behemoth",
+   "playlist": "Team Slayer",
+   "won": true,
+   "kills": 11,
+   "deaths": 10,
+   "assists": 3,
+   "accuracy": 0.4494,
+   "score": 1607,
+   "kda": 1.2,
+   "extra": {
+    "damageDealt": 8763,
+    "damageTaken": 8310,
+    "headshots": 4
+   },
+   "kd": 1.1
+  },
+  {
+   "id": "hi-0110",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-27T20:51:54Z",
+   "duration": 770,
+   "mode": "Capture the Flag",
+   "map": "Behemoth",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 3,
+   "deaths": 3,
+   "assists": 4,
+   "accuracy": 0.4381,
+   "score": 861,
+   "kda": 1.4444,
+   "extra": {
+    "damageDealt": 2603,
+    "damageTaken": 2744,
+    "headshots": 1
+   },
+   "kd": 1
+  },
+  {
+   "id": "hi-0108",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-26T20:29:24Z",
+   "duration": 713,
+   "mode": "Capture the Flag",
+   "map": "Aquarius",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 16,
+   "deaths": 11,
+   "assists": 5,
+   "accuracy": 0.4677,
+   "score": 2210,
+   "kda": 1.6061,
+   "extra": {
+    "damageDealt": 12958,
+    "damageTaken": 8412,
+    "headshots": 7
+   },
+   "kd": 1.4545
+  },
+  {
+   "id": "hi-0109",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-26T20:22:55Z",
+   "duration": 690,
+   "mode": "Slayer",
+   "map": "Bazaar",
+   "playlist": "Quick Play",
+   "won": false,
+   "kills": 10,
+   "deaths": 9,
+   "assists": 8,
+   "accuracy": 0.4104,
+   "score": 1375,
+   "kda": 1.4074,
+   "extra": {
+    "damageDealt": 8500,
+    "damageTaken": 7145,
+    "headshots": 4
+   },
+   "kd": 1.1111
+  },
+  {
+   "id": "hi-0107",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-24T20:01:06Z",
+   "duration": 600,
+   "mode": "Strongholds",
+   "map": "Bazaar",
+   "playlist": "Team Slayer",
+   "won": false,
+   "kills": 12,
+   "deaths": 9,
+   "assists": 6,
+   "accuracy": 0.4168,
+   "score": 1538,
+   "kda": 1.5556,
+   "extra": {
+    "damageDealt": 9997,
+    "damageTaken": 7076,
+    "headshots": 5
+   },
+   "kd": 1.3333
+  },
+  {
+   "id": "hi-0106",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-23T17:48:30Z",
+   "duration": 644,
+   "mode": "Slayer",
+   "map": "Bazaar",
+   "playlist": "Ranked Arena",
+   "won": false,
+   "kills": 11,
+   "deaths": 9,
+   "assists": 4,
+   "accuracy": 0.5283,
+   "score": 1354,
+   "kda": 1.3704,
+   "extra": {
+    "damageDealt": 8690,
+    "damageTaken": 7717,
+    "headshots": 4
+   },
+   "kd": 1.2222
+  },
+  {
+   "id": "hi-0105",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-23T17:27:06Z",
+   "duration": 820,
+   "mode": "Strongholds",
+   "map": "Bazaar",
+   "playlist": "Team Slayer",
+   "won": true,
+   "kills": 22,
+   "deaths": 15,
+   "assists": 9,
+   "accuracy": 0.5211,
+   "score": 2932,
+   "kda": 1.6667,
+   "extra": {
+    "damageDealt": 17618,
+    "damageTaken": 12054,
+    "headshots": 10
+   },
+   "kd": 1.4667
+  },
+  {
+   "id": "hi-0104",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-23T17:19:15Z",
+   "duration": 648,
+   "mode": "Capture the Flag",
+   "map": "Aquarius",
+   "playlist": "Ranked Arena",
+   "won": false,
+   "kills": 17,
+   "deaths": 13,
+   "assists": 9,
+   "accuracy": 0.4711,
+   "score": 2131,
+   "kda": 1.5385,
+   "extra": {
+    "damageDealt": 13904,
+    "damageTaken": 10348,
+    "headshots": 5
+   },
+   "kd": 1.3077
+  },
+  {
+   "id": "hi-0103",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-22T17:49:45Z",
+   "duration": 700,
+   "mode": "Slayer",
+   "map": "Behemoth",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 21,
+   "deaths": 20,
+   "assists": 10,
+   "accuracy": 0.3448,
+   "score": 2918,
+   "kda": 1.2167,
+   "extra": {
+    "damageDealt": 17085,
+    "damageTaken": 15233,
+    "headshots": 10
+   },
+   "kd": 1.05
+  },
+  {
+   "id": "hi-0102",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-22T16:52:59Z",
+   "duration": 845,
+   "mode": "Strongholds",
+   "map": "Recharge",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 16,
+   "deaths": 12,
+   "assists": 10,
+   "accuracy": 0.4128,
+   "score": 2364,
+   "kda": 1.6111,
+   "extra": {
+    "damageDealt": 12993,
+    "damageTaken": 9221,
+    "headshots": 7
+   },
+   "kd": 1.3333
+  },
+  {
+   "id": "hi-0099",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-22T16:51:52Z",
+   "duration": 786,
+   "mode": "Oddball",
+   "map": "Solitude",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 7,
+   "deaths": 8,
+   "assists": 6,
+   "accuracy": 0.4669,
+   "score": 1320,
+   "kda": 1.125,
+   "extra": {
+    "damageDealt": 5825,
+    "damageTaken": 6609,
+    "headshots": 2
+   },
+   "kd": 0.875
+  },
+  {
+   "id": "hi-0101",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-22T16:39:41Z",
+   "duration": 836,
+   "mode": "Slayer",
+   "map": "Aquarius",
+   "playlist": "Quick Play",
+   "won": false,
+   "kills": 20,
+   "deaths": 14,
+   "assists": 7,
+   "accuracy": 0.4484,
+   "score": 2399,
+   "kda": 1.5952,
+   "extra": {
+    "damageDealt": 15691,
+    "damageTaken": 11253,
+    "headshots": 6
+   },
+   "kd": 1.4286
+  },
+  {
+   "id": "hi-0100",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-22T16:34:20Z",
+   "duration": 656,
+   "mode": "King of the Hill",
+   "map": "Streets",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 21,
+   "deaths": 17,
+   "assists": 11,
+   "accuracy": 0.4175,
+   "score": 2862,
+   "kda": 1.451,
+   "extra": {
+    "damageDealt": 16726,
+    "damageTaken": 13600,
+    "headshots": 9
+   },
+   "kd": 1.2353
+  },
+  {
+   "id": "hi-0097",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-21T20:41:05Z",
+   "duration": 685,
+   "mode": "Slayer",
+   "map": "Bazaar",
+   "playlist": "Quick Play",
+   "won": false,
+   "kills": 9,
+   "deaths": 8,
+   "assists": 2,
+   "accuracy": 0.4891,
+   "score": 1027,
+   "kda": 1.2083,
+   "extra": {
+    "damageDealt": 7881,
+    "damageTaken": 6392,
+    "headshots": 4
+   },
+   "kd": 1.125
+  },
+  {
+   "id": "hi-0098",
+   "game": "HaloInfinite",
+   "playedAt": "2026-08-21T20:32:25Z",
+   "duration": 692,
+   "mode": "Oddball",
+   "map": "Live Fire",
+   "playlist": "Ranked Arena",
+   "won": true,
+   "kills": 15,
+   "deaths": 8,
+   "assists": 5,
+   "accuracy": 0.3986,
+   "score": 2017,
+   "kda": 2.0833,
+   "extra": {
+    "damageDealt": 12410,
+    "damageTaken": 6280,
+    "headshots": 6
+   },
+   "kd": 1.875
+  }
+ ],
+ "breakdowns": [
+  {
+   "key": "maps",
+   "label": "Maps by K/D",
+   "valueLabel": "K/D",
+   "rows": [
+    {
+     "name": "Live Fire",
+     "value": 1.2241,
+     "formatted": "1.22",
+     "samples": 17,
+     "share": 0.1405
+    },
+    {
+     "name": "Streets",
+     "value": 1.203,
+     "formatted": "1.20",
+     "samples": 17,
+     "share": 0.1405
+    },
+    {
+     "name": "Bazaar",
+     "value": 1.1853,
+     "formatted": "1.19",
+     "samples": 21,
+     "share": 0.1736
+    },
+    {
+     "name": "Aquarius",
+     "value": 1.1531,
+     "formatted": "1.15",
+     "samples": 16,
+     "share": 0.1322
+    },
+    {
+     "name": "Recharge",
+     "value": 1.1405,
+     "formatted": "1.14",
+     "samples": 16,
+     "share": 0.1322
+    },
+    {
+     "name": "Solitude",
+     "value": 1.0636,
+     "formatted": "1.06",
+     "samples": 18,
+     "share": 0.1488
+    },
+    {
+     "name": "Behemoth",
+     "value": 1.0606,
+     "formatted": "1.06",
+     "samples": 16,
+     "share": 0.1322
+    }
+   ]
+  },
+  {
+   "key": "modes",
+   "label": "Form by mode",
+   "valueLabel": "Win rate",
+   "rows": [
+    {
+     "name": "Capture the Flag",
+     "value": 0.6667,
+     "formatted": "66.7%",
+     "samples": 24,
+     "share": 0.1983
+    },
+    {
+     "name": "Strongholds",
+     "value": 0.6296,
+     "formatted": "63.0%",
+     "samples": 27,
+     "share": 0.2231
+    },
+    {
+     "name": "King of the Hill",
+     "value": 0.619,
+     "formatted": "61.9%",
+     "samples": 21,
+     "share": 0.1736
+    },
+    {
+     "name": "Oddball",
+     "value": 0.4783,
+     "formatted": "47.8%",
+     "samples": 23,
+     "share": 0.1901
+    },
+    {
+     "name": "Slayer",
+     "value": 0.3846,
+     "formatted": "38.5%",
+     "samples": 26,
+     "share": 0.2149
+    }
+   ]
+  }
+ ],
+ "totals": {
+  "matches": 121,
+  "wins": 67,
+  "losses": 54,
+  "timePlayed": 85110,
+  "kills": 1577,
+  "deaths": 1374,
+  "assists": 645,
+  "winRate": 0.5537,
+  "kd": 1.1477
+ },
+ "warnings": [
+  "Gamertag \"Іlissu\" renders like \"Ilissu\" but its first character is U+0406 (Cyrillic). It cannot be typed on a normal keyboard, so this player was resolved by XUID.",
+  "Synthetic sample data: no Halo credentials are configured, so the dashboard is showing a fixture."
+ ]
+}

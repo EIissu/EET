@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Eet.Destiny.Tests</RootNamespace>
+    <AssemblyName>Destiny.Tests</AssemblyName>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!--
+      xUnit's analyzers flag a handful of style rules that would otherwise fail the build
+      under TreatWarningsAsErrors without saying anything useful about correctness.
+    -->
+    <NoWarn>$(NoWarn);xUnit1030</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/Destiny.Client/Destiny.Client.csproj" />
+    <ProjectReference Include="../../src/Destiny.Api/Destiny.Api.csproj" />
+  </ItemGroup>
+
+</Project>

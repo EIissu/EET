@@ -1,0 +1,7 @@
+{
+  "_note": "Copy this to appsettings.Development.json and put your own key in it. That filename is gitignored; this one is not, so never put a real key here.",
+
+  "Bungie": {
+    "ApiKey": "PUT-YOUR-OWN-KEY-HERE"
+  }
+}

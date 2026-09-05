@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Models, trend maths and identity handling shared by both trackers. No HTTP here. -->
+  <PropertyGroup>
+    <RootNamespace>Eet.Trackers.Core</RootNamespace>
+  </PropertyGroup>
+</Project>

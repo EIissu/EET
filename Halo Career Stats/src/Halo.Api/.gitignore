@@ -1,0 +1,7 @@
+# Local-only configuration. Never commit this file: it is where a real Spartan token,
+# refresh token or client secret would land while developing against live services.
+appsettings.Development.json
+appsettings.*.Local.json
+
+# The dotnet user-secrets store lives outside the repo, but be explicit anyway.
+secrets.json

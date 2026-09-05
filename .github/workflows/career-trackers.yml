@@ -1,0 +1,113 @@
+name: career trackers
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "Halo Career Stats/**"
+      - "Destiny Career Stats/**"
+      - "Career Stats Shared/**"
+      - "Career Stats.slnx"
+      - ".github/workflows/career-trackers.yml"
+  pull_request:
+    paths:
+      - "Halo Career Stats/**"
+      - "Destiny Career Stats/**"
+      - "Career Stats Shared/**"
+      - "Career Stats.slnx"
+      - ".github/workflows/career-trackers.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Linux and Windows both matter here: the trackers read fixtures through paths
+        # containing spaces, and the fixture locator walks up the directory tree. Those are
+        # exactly the things that work on one platform and quietly fail on the other.
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Build
+        run: dotnet build "Career Stats.slnx" -c Release --nologo
+
+      - name: Test
+        run: dotnet test "Career Stats.slnx" -c Release --no-build --nologo
+
+      # The whole point of the fixture mode is that someone with no credentials can run
+      # this. If that ever stops being true, it should fail here rather than in their hands.
+      - name: The APIs must serve a career with no credentials at all
+        shell: bash
+        env:
+          ASPNETCORE_URLS: http://127.0.0.1:5099
+        run: |
+          set -euo pipefail
+          for app in "Halo Career Stats/src/Halo.Api" "Destiny Career Stats/src/Destiny.Api"; do
+            echo "--- $app"
+            dotnet run --project "$app" -c Release --no-build --no-launch-profile &
+            pid=$!
+            for _ in $(seq 1 45); do
+              if curl -fsS -m 2 "$ASPNETCORE_URLS/api/health" >/dev/null 2>&1; then break; fi
+              sleep 1
+            done
+            health=$(curl -fsS -m 10 "$ASPNETCORE_URLS/api/health")
+            echo "$health"
+            echo "$health" | grep -q '"isFixture":true' \
+              || { echo "::error::expected fixture mode with no credentials"; kill $pid; exit 1; }
+            kill $pid 2>/dev/null || true
+            wait $pid 2>/dev/null || true
+          done
+
+  secrets:
+    name: no credentials committed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # These trackers handle a Bungie API key, an Azure client id and a cached Xbox
+      # refresh token. A refresh token in the history is a compromise, not a typo, so the
+      # ignore rules are asserted rather than assumed.
+      - name: The credential paths must be ignored
+        run: |
+          set -euo pipefail
+          fail=0
+          for path in \
+            "eet-trackers/xbox-refresh-token.json" \
+            "eet-trackers/xbox-refresh-token.tokencache.json" \
+            "Career Stats Shared/eet-trackers/xbox-refresh-token.tokencache.json" \
+            "Halo Career Stats/src/Halo.Api/appsettings.Development.json" \
+            "Destiny Career Stats/src/Destiny.Api/appsettings.Development.json" \
+            ".env"
+          do
+            if git check-ignore -q "$path"; then
+              echo "ignored: $path"
+            else
+              echo "::error::$path is NOT ignored and could be committed"
+              fail=1
+            fi
+          done
+          exit $fail
+
+      - name: No credential-shaped literals in tracked files
+        run: |
+          set -euo pipefail
+          if git grep -nIE '(api[_-]?key|client[_-]?secret|refresh_token)["'"'"']?\s*[:=]\s*["'"'"'][A-Za-z0-9_-]{24,}' \
+               -- "Halo Career Stats" "Destiny Career Stats" "Career Stats Shared"; then
+            echo "::error::something that looks like a real credential is committed"
+            exit 1
+          fi
+          echo "none found"
