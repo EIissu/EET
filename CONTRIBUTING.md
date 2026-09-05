@@ -118,3 +118,4 @@ Every implementer has hit at least one of these. They are not hypothetical:
 belongs in its own language, not like the Python transliterated. Comment the *why* —
 especially where your language's native behaviour differs from the spec and you had to
 correct for it. Those comments are the most valuable prose in the repository.
+Anything helps...
