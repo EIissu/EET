@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The Xbox Live token chain, and the achievements client that rides on it.
+
+    This lives in shared/ rather than under halo-career-stats/ because it is a platform
+    concern, not a Halo one: the same three token exchanges produce both the Spartan token
+    Halo needs and the XSTS token achievements.xboxlive.com needs. Only the relying party
+    at the last step differs.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Eet.Xbox</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Eet.Trackers.Core/Eet.Trackers.Core.csproj" />
+  </ItemGroup>
+</Project>

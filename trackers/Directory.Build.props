@@ -1,0 +1,30 @@
+<Project>
+
+  <!--
+    Shared settings for every project in the career trackers.
+
+    Deliberately separate from the EET virtual machine's own .NET solution: that one
+    exists to prove four languages agree on integer arithmetic, this one talks to two
+    game APIs over HTTP. They share a repository, not a build.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <Deterministic>true</Deterministic>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!--
+    Every number these trackers display is derived from someone's real match history.
+    Rounding a K/D with the ambient culture would render it as "1,42" in half of Europe
+    and quietly break every chart axis, so the culture is pinned above and all formatting
+    goes through CultureInfo.InvariantCulture explicitly.
+  -->
+
+</Project>
