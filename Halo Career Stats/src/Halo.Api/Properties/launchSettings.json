@@ -1,0 +1,14 @@
+{
+  "//": "Only read by `dotnet run`; never copied to the build output and never used in production. It exists so the documented command needs no environment variables: 127.0.0.1:5210 is the port Career Stats Web/vite.config.ts proxies /api/halo to, and Development is what turns on the narrow CORS policy for the Vite dev server on :5173. ASPNETCORE_URLS still overrides applicationUrl if you need a different port.",
+  "profiles": {
+    "Halo.Api": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://127.0.0.1:5210",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

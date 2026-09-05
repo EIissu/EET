@@ -37,6 +37,27 @@ builder.Services.ConfigureHttpJsonOptions(options => ApiJson.Configure(options.S
 builder.Services.AddProblemDetails();
 builder.Services.AddHaloCareerSource(haloOptions, builder.Environment.ContentRootPath);
 
+// ---------------------------------------------------------------------------
+// CORS, in development only, and narrowly.
+//
+// Production serves the built app from this same origin, so there is nothing legitimate to
+// allow and the policy is simply not registered -- no headers, no preflight, no way for
+// another site to spend this operator's Xbox credentials from a visitor's browser.
+// AllowAnyOrigin would do exactly that, which is why it is not here.
+//
+// Development is the one case where the two halves genuinely live on different origins:
+// Vite on :5173, this API on :5210. The dev proxy in vite.config.ts usually hides that, but
+// it is one config change away from being bypassed and the failure it produces otherwise is
+// a browser console message about a missing header, not anything about the app.
+// ---------------------------------------------------------------------------
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddCors(cors => cors.AddPolicy(DevCors.PolicyName, policy => policy
+        .WithOrigins([.. DevCors.Origins])
+        .WithMethods([.. DevCors.Methods])
+        .WithHeaders([.. DevCors.Headers])));
+}
+
 var app = builder.Build();
 
 // ---------------------------------------------------------------------------
@@ -55,24 +76,55 @@ app.UseExceptionHandler(errorApp => errorApp.Run(async context =>
 }));
 
 // ---------------------------------------------------------------------------
-// Static files come from Career Stats Shared/web, which another agent is building. The
-// directory may not exist yet and the app must start anyway, so this is entirely
-// conditional -- a missing dashboard costs you the dashboard, not the API.
+// Static files.
+//
+// Two front ends can be served and the choice is ordered, not preferential: the built React
+// app in Career Stats Web/dist is the product, and the dependency-free dashboard in
+// Career Stats Shared/web is what answers when nobody has run npm. The vanilla one is not
+// legacy and is not going away -- it is the zero-build path, and it has to keep working.
+//
+// Either may be absent and the app must start anyway, so this is entirely conditional: a
+// missing front end costs you the front end, not the API. Which one was picked is logged,
+// because "why am I looking at the old dashboard" has exactly one answer and it should not
+// take a debugger to find it.
 // ---------------------------------------------------------------------------
-var webRoot = StaticAssets.Locate(app.Configuration["Halo:WebDirectory"] ?? "Career Stats Shared/web",
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors(DevCors.PolicyName);
+}
+
+var web = WebAssets.Choose(
+    app.Configuration["Halo:SpaDirectory"] ?? WebAssets.SpaDirectory,
+    app.Configuration["Halo:WebDirectory"] ?? WebAssets.VanillaDirectory,
     app.Environment.ContentRootPath);
 
-if (webRoot is not null)
+if (web is not null)
 {
-    var files = new PhysicalFileProvider(webRoot);
+    var files = new PhysicalFileProvider(web.Root);
     app.UseDefaultFiles(new DefaultFilesOptions { FileProvider = files });
-    app.UseStaticFiles(new StaticFileOptions { FileProvider = files });
-    app.Logger.LogInformation("Serving the dashboard from {WebRoot}.", webRoot);
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = files,
+        OnPrepareResponse = served =>
+        {
+            // index.html names the content-hashed bundles, so a cached copy of it points at
+            // files that a redeploy has already deleted. The bundles themselves are safe to
+            // cache forever precisely because their names change when they do.
+            if (string.Equals(served.File.Name, "index.html", StringComparison.OrdinalIgnoreCase))
+            {
+                served.Context.Response.Headers.CacheControl = "no-cache, no-store, must-revalidate";
+            }
+        },
+    });
+    app.Logger.LogInformation(
+        "Serving the {Front} from {WebRoot}.", web.Label, web.Root);
 }
 else
 {
     app.Logger.LogInformation(
-        "No dashboard directory found (looked for Career Stats Shared/web). The API is fully functional; only the UI is missing.");
+        "No front end found (looked for {Spa}, then {Vanilla}). The API is fully functional; only the UI is missing.",
+        WebAssets.SpaDirectory,
+        WebAssets.VanillaDirectory);
 }
 
 var source = app.Services.GetRequiredService<HaloCareerSource>();
@@ -107,42 +159,67 @@ app.MapGet("/api/health", () => Results.Ok(new
 
 app.MapGet("/api/player", async (string? q, CancellationToken ct) =>
 {
-    if (string.IsNullOrWhiteSpace(q))
+    // Whatever came out of a search box: trimmed, stripped of the invisible characters a
+    // paste drags along, and unwrapped if it is an xuid(...) reference. Nothing here decides
+    // what matches; it only stops a stray space deciding it.
+    var query = SearchQuery.Normalize(q);
+
+    if (query.Length == 0)
     {
         return ApiProblems.BadRequest(
             "A search query is required.",
             "Pass ?q= with a gamertag or an XUID. XUIDs are more reliable: a gamertag containing a non-Latin letter that renders like a Latin one cannot be typed and so cannot be searched.");
     }
 
-    var player = await source.ResolveAsync(q, ct);
-    return player is null
-        ? ApiProblems.NotFound($"No player matches \"{q}\".", HaloPlayerQuery.NotFoundRemedy(q))
-        : Results.Ok(new
-        {
-            player,
-            typedQuery = q,
-            // The homoglyph diagnosis, surfaced rather than buried. If the resolved handle
-            // is not the string the user typed, say exactly why -- that is the difference
-            // between a working search box and a dead end.
-            homoglyphNotice = Identity.Explain(player.Handle),
-            handleIsTypeable = !Identity.LooksLikeHomoglyph(player.Handle),
-        });
+    var player = await source.ResolveAsync(query, ct);
+    if (player is null)
+    {
+        return ApiProblems.NotFound($"No player matches \"{query}\".", HaloPlayerQuery.NotFoundRemedy(query));
+    }
+
+    // The Player record's own fields, at the top level, because that is what this endpoint
+    // is for: a caller asked "who is this" and should get a player back, not a player
+    // wrapped in a diagnostic envelope it has to unpack. The diagnostics ride alongside.
+    return Results.Ok(new
+    {
+        player.Handle,
+        player.Id,
+        player.Platform,
+        player.IconUrl,
+        isFixture = source.IsFixture,
+        typedQuery = q,
+        normalizedQuery = query,
+        // How the typed text reached this player. "homoglyph" is the interesting one: the
+        // query and the handle read identically to a human and share no bytes.
+        matchedBy = string.Equals(player.Handle, query, StringComparison.OrdinalIgnoreCase)
+            ? "exact"
+            : Identity.LooksTheSame(player.Handle, query)
+                ? "homoglyph"
+                : "id",
+        // The homoglyph diagnosis, surfaced rather than buried. If the resolved handle
+        // is not the string the user typed, say exactly why -- that is the difference
+        // between a working search box and a dead end.
+        homoglyphNotice = Identity.Explain(player.Handle),
+        handleIsTypeable = !Identity.LooksLikeHomoglyph(player.Handle),
+    });
 })
 .WithName("ResolvePlayer");
 
 app.MapGet("/api/career", async (string? player, CancellationToken ct) =>
 {
-    if (string.IsNullOrWhiteSpace(player))
+    var query = SearchQuery.Normalize(player);
+
+    if (query.Length == 0)
     {
         return ApiProblems.BadRequest(
             "A player is required.",
             "Pass ?player= with an XUID, or resolve a gamertag first with /api/player?q=.");
     }
 
-    var resolved = await source.ResolveAsync(player, ct);
+    var resolved = await source.ResolveAsync(query, ct);
     if (resolved is null)
     {
-        return ApiProblems.NotFound($"No player matches \"{player}\".", HaloPlayerQuery.NotFoundRemedy(player));
+        return ApiProblems.NotFound($"No player matches \"{query}\".", HaloPlayerQuery.NotFoundRemedy(query));
     }
 
     return Results.Ok(await source.GetSnapshotAsync(resolved, ct));
@@ -151,17 +228,19 @@ app.MapGet("/api/career", async (string? player, CancellationToken ct) =>
 
 app.MapGet("/api/matches", async (string? player, int? count, CancellationToken ct) =>
 {
-    if (string.IsNullOrWhiteSpace(player))
+    var query = SearchQuery.Normalize(player);
+
+    if (query.Length == 0)
     {
         return ApiProblems.BadRequest(
             "A player is required.",
             "Pass ?player= with an XUID, or resolve a gamertag first with /api/player?q=.");
     }
 
-    var resolved = await source.ResolveAsync(player, ct);
+    var resolved = await source.ResolveAsync(query, ct);
     if (resolved is null)
     {
-        return ApiProblems.NotFound($"No player matches \"{player}\".", HaloPlayerQuery.NotFoundRemedy(player));
+        return ApiProblems.NotFound($"No player matches \"{query}\".", HaloPlayerQuery.NotFoundRemedy(query));
     }
 
     var matches = await source.GetMatchesAsync(resolved, count ?? 25, ct);
@@ -175,9 +254,9 @@ app.MapGet("/api/matches", async (string? player, int? count, CancellationToken 
 })
 .WithName("Matches");
 
-// Only when there is no dashboard to serve at "/". With one, the static middleware above
+// Only when there is no front end to serve at "/". With one, the static middleware above
 // has already answered.
-if (webRoot is null)
+if (web is null)
 {
     app.MapGet("/", () => Results.Text(
         string.Create(
@@ -185,7 +264,7 @@ if (webRoot is null)
             $"""
              halo-career-stats is running{(source.IsFixture ? " on SYNTHETIC FIXTURES (no credentials configured)" : " against live services")}.
 
-             The dashboard is not present -- Career Stats Shared/web does not exist yet -- but the API works:
+             No front end is present -- neither Career Stats Web/dist nor Career Stats Shared/web -- but the API works:
 
                GET /api/health
                GET /api/player?q=Elissu
@@ -194,6 +273,45 @@ if (webRoot is null)
              """),
         "text/plain"));
 }
+
+// ---------------------------------------------------------------------------
+// The fallback, which has two jobs and must not confuse them.
+//
+// A single-page app owns its own URLs. Today the site puts its state in the query string --
+// /?game=halo&q=Elissu -- and that already works, because "/" is a real file. The moment it
+// adopts paths, /halo/Elissu is a request the server has never heard of, and answering 404
+// would break every bookmark and every reload. So an unknown path outside /api gets
+// index.html and the app routes it client-side.
+//
+// The other job is refusing to do that for /api. An unknown API route answered with HTML
+// and a 200 is a genuinely nasty bug: the caller's fetch() succeeds, JSON.parse dies on
+// "Unexpected token <", and nothing in that message hints that the path was wrong. Unknown
+// API routes stay JSON 404s with a body that says what does exist.
+// ---------------------------------------------------------------------------
+app.MapFallback(async context =>
+{
+    if (ApiRoutes.IsApi(context.Request.Path))
+    {
+        var problem = ApiProblems.UnknownApiRoute(context.Request.Path);
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+        context.Response.ContentType = "application/problem+json";
+        await context.Response.WriteAsJsonAsync(problem, ApiJson.Options, "application/problem+json");
+        return;
+    }
+
+    if (web is null)
+    {
+        // Nothing to fall back to. A 404 is the honest answer, and the "/" route above has
+        // already explained where the API is.
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+        return;
+    }
+
+    context.Response.StatusCode = StatusCodes.Status200OK;
+    context.Response.ContentType = "text/html; charset=utf-8";
+    context.Response.Headers.CacheControl = "no-cache, no-store, must-revalidate";
+    await context.Response.SendFileAsync(web.IndexPath);
+});
 
 await app.RunAsync();
 

@@ -14,6 +14,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <!--
+      Runs each API in-process over a real HTTP pipeline, with no socket and no port.
+      Routing policy is the one thing that cannot be unit tested: whether an unknown
+      /api path becomes JSON or HTML is decided by middleware order, and the only
+      honest way to assert it is to make the request.
+    -->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
   </ItemGroup>

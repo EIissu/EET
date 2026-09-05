@@ -128,7 +128,12 @@ public static class DestinyProblem
                 StatusCodes.Status504GatewayTimeout => "Bungie.net timed out",
                 _ => "Bungie API error",
             },
-            detail: exception.Message,
+            // The remedy is repeated into `detail` rather than left only in the extension.
+            // A generic HTTP client -- including the site's own, and every RFC 7807 viewer
+            // ever written -- shows `detail` and nothing else, and "Bungie has no player
+            // called Ilissu#9007" on its own is a dead end. The sentence explaining that the
+            // name may not be the text it appears to be is the whole value of the answer.
+            detail: Detail(exception.Message, exception.Remedy),
             statusCode: status,
             type: errorCode is { } t
                 ? TypeBase + t.ToString(CultureInfo.InvariantCulture)
@@ -142,11 +147,36 @@ public static class DestinyProblem
     public static IResult NotFound(string title, string detail, string? remedy = null) =>
         Results.Problem(
             title: title,
-            detail: detail,
+            detail: Detail(detail, remedy),
             statusCode: StatusCodes.Status404NotFound,
             extensions: remedy is null
                 ? null
                 : new Dictionary<string, object?> { ["remedy"] = remedy });
+
+    /// <summary>
+    /// The 404 for a path under /api that no route claims.
+    ///
+    /// It exists because the single-page fallback would otherwise answer this with
+    /// index.html and HTTP 200. A caller that asked for JSON must get JSON, and a status
+    /// that means what it says, however wrong the path was.
+    /// </summary>
+    public static IResult UnknownApiRoute(string path) => Results.Problem(
+        title: "No such API route",
+        detail: $"Nothing is mapped at \"{path}\". This tracker serves GET /api/health, "
+            + "/api/player?q=, /api/career and /api/matches. Everything outside /api is "
+            + "answered with the single-page app instead, which is why this is JSON rather "
+            + "than HTML.",
+        statusCode: StatusCodes.Status404NotFound,
+        instance: path);
+
+    /// <summary>
+    /// What went wrong, then what to do about it, in the one field every client displays.
+    /// The remedy is not appended twice when the message already ends in it.
+    /// </summary>
+    private static string Detail(string message, string? remedy) =>
+        string.IsNullOrWhiteSpace(remedy) || message.Contains(remedy, StringComparison.Ordinal)
+            ? message
+            : message.TrimEnd() + " " + remedy.TrimStart();
 }
 
 /// <summary>
@@ -161,8 +191,22 @@ public static class SharedWeb
     /// Where to begin walking up from. When given, it is the only place searched -- a caller
     /// that names a directory means that directory.
     /// </param>
-    public static string? Find(string? start = null)
+    public static string? Find(string? start = null) => Locate(WebAssets.VanillaDirectory, start);
+
+    /// <summary>
+    /// The same walk, for any directory relative to the repository root.
+    ///
+    /// The built React app lives at <c>Career Stats Web/dist</c> and has to be found the
+    /// same way the vanilla dashboard is: this API gets run from its own project directory,
+    /// from the repository root, and from a publish output, and the front end sits somewhere
+    /// above it in all three cases.
+    /// </summary>
+    /// <param name="relative">A path relative to the repository root, in either slash style.</param>
+    public static string? Locate(string relative, string? start = null)
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(relative);
+
+        var segments = relative.Split('/', '\\');
         var candidates = start is not null
             ? [start]
             : new[] { AppContext.BaseDirectory, Directory.GetCurrentDirectory() };
@@ -177,13 +221,12 @@ public static class SharedWeb
             var directory = new DirectoryInfo(candidate);
             while (directory is not null)
             {
-                foreach (var relative in new[]
-                         {
-                             Path.Combine("Career Stats Shared", "web"),
-                             Path.Combine("..", "Career Stats Shared", "web"),
-                         })
+                foreach (var prefix in Prefixes)
                 {
-                    var web = Path.Combine(directory.FullName, relative);
+                    var web = prefix.Length == 0
+                        ? Path.Combine([directory.FullName, .. segments])
+                        : Path.Combine([directory.FullName, prefix, .. segments]);
+
                     if (Directory.Exists(web))
                     {
                         return web;
@@ -196,4 +239,10 @@ public static class SharedWeb
 
         return null;
     }
+
+    /// <summary>
+    /// Checked at every level: the directory itself, and one step to the side. The second
+    /// is what finds the front end when the walk starts inside a sibling project folder.
+    /// </summary>
+    private static readonly string[] Prefixes = [string.Empty, ".."];
 }
