@@ -281,7 +281,7 @@ Where it started, kept exactly as it was:
 </details>
 
 Built by [@EIissu](https://github.com/EIissu), [@Equilius](https://github.com/Equilius)
-and vlad. Licensed under [GPL-3.0](LICENSE); see the
+and [@2winight](https://github.com/2winight). Licensed under [GPL-3.0](LICENSE); see the
 [code of conduct](CODE_OF_CONDUCT.md) before opening a pull request.
 ⣿⣿⣿⣿⣿⣿⣿⣤⡘⡍⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠋⡡⠊⠉⢀⠞⡻⠊⡐⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⣿⣿⣿⣿⣿⣿⡟⢿⠻⡀⠀⠀⠉⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠉⠀⠀⣠⠞⠃⠀⢀⡀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
