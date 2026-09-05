@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Eet.Core</RootNamespace>
+
+    <!--
+      The library is reflection free and allocation light on purpose, so it can be linked
+      into the NativeAOT variant of the CLI (runtime key `csharp-aot`). Turning the
+      trim/AOT analysers on here means an accidental reflective dependency is a build
+      error in this project rather than a surprise at publish time.
+
+      Nothing below net8.0 is used, so <TargetFrameworks> can be widened without touching
+      a line of the source.
+    -->
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+</Project>
