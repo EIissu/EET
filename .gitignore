@@ -58,7 +58,10 @@ secrets.json
 *.pem
 
 # The Xbox token cache, if anyone points it at the working tree instead of LOCALAPPDATA.
+# Both spellings: the store defaults to an 'eet-trackers' directory, and the adversarial
+# review found the dot-prefixed pattern alone did not cover it.
 .eet-trackers/
+eet-trackers/
 *.tokencache.json
 
 # --- build output --------------------------------------------------------------------

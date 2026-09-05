@@ -1,0 +1,1930 @@
+{
+ "_note": "SYNTHETIC SAMPLE DATA. Generated offline for the EET dashboard; no live API was called and no credentials exist. Numbers are plausible, not real. The shape is exactly what GET /api/career returns (Eet.Trackers.Core.CareerSnapshot).",
+ "player": {
+  "handle": "Elissu#4417",
+  "id": "4611686018467284networked",
+  "platform": "Steam"
+ },
+ "game": "Destiny2",
+ "generatedAt": "2026-09-03T22:20:00Z",
+ "isFixture": true,
+ "source": "fixture:destiny-2",
+ "headline": [
+  {
+   "key": "kd",
+   "label": "K/D",
+   "value": 1.0539,
+   "formatted": "1.05",
+   "better": "Higher",
+   "delta": -0.1914,
+   "deltaFormatted": "-0.19",
+   "note": "Last 25 matches vs the 25 before",
+   "improved": false
+  },
+  {
+   "key": "winRate",
+   "label": "Win rate",
+   "value": 0.52,
+   "formatted": "52.0%",
+   "better": "Higher",
+   "delta": -0.04,
+   "deltaFormatted": "-4.0%",
+   "note": "Last 25 matches vs the 25 before",
+   "improved": false
+  },
+  {
+   "key": "accuracy",
+   "label": "Accuracy",
+   "value": 0.392,
+   "formatted": "39.2%",
+   "better": "Higher",
+   "delta": -0.0014,
+   "deltaFormatted": "-0.1%",
+   "note": "Shots on target, last 25 matches",
+   "improved": false
+  },
+  {
+   "key": "killsPerMatch",
+   "label": "Kills / match",
+   "value": 10.16,
+   "formatted": "10.16",
+   "better": "Higher",
+   "delta": -3.48,
+   "deltaFormatted": "-3.48",
+   "note": "Last 25 matches vs the 25 before",
+   "improved": false
+  },
+  {
+   "key": "deathsPerMatch",
+   "label": "Deaths / match",
+   "value": 9.48,
+   "formatted": "9.48",
+   "better": "Lower",
+   "delta": -1.24,
+   "deltaFormatted": "-1.24",
+   "note": "Lower is better",
+   "improved": true
+  },
+  {
+   "key": "assistsPerMatch",
+   "label": "Assists / match",
+   "value": 4.36,
+   "formatted": "4.36",
+   "better": "Higher",
+   "delta": 0,
+   "deltaFormatted": "0.00",
+   "note": "Unchanged against the previous 25",
+   "improved": false
+  },
+  {
+   "key": "timePlayed",
+   "label": "Time played",
+   "value": 19.4656,
+   "formatted": "19h 27m",
+   "better": "Neutral",
+   "note": "Lifetime total"
+  }
+ ],
+ "trends": [
+  {
+   "key": "kd",
+   "label": "K/D",
+   "unit": "ratio",
+   "better": "Higher",
+   "points": [
+    {
+     "date": "2026-06-06",
+     "value": 1.2549019607843137,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-07",
+     "value": 1.1863636363636365,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-08",
+     "value": 1.7354166666666666,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-10",
+     "value": 1.4,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-12",
+     "value": 1.8,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-13",
+     "value": 1.2321428571428572,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-14",
+     "value": 1.5486324786324785,
+     "samples": 5
+    },
+    {
+     "date": "2026-06-16",
+     "value": 1.4090909090909092,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-17",
+     "value": 0.5454545454545454,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-20",
+     "value": 1.3888888888888888,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-21",
+     "value": 1.0499999999999998,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-27",
+     "value": 1.1292735042735043,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-28",
+     "value": 1.1071428571428572,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-01",
+     "value": 1.0833333333333333,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-02",
+     "value": 1.2793650793650793,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-03",
+     "value": 1.2914772727272728,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-04",
+     "value": 1.2777777777777777,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-05",
+     "value": 1.3181818181818181,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-10",
+     "value": 1.5416666666666665,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-11",
+     "value": 0.9107142857142857,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-12",
+     "value": 1.2222222222222223,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-14",
+     "value": 1.5714285714285714,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-17",
+     "value": 1.2281746031746033,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-18",
+     "value": 0.7237762237762237,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-19",
+     "value": 1.1335227272727273,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-25",
+     "value": 1.625,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-26",
+     "value": 1.125,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-29",
+     "value": 1.625,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-02",
+     "value": 0.8667443667443667,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-05",
+     "value": 0.6531986531986532,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-06",
+     "value": 1.361111111111111,
+     "samples": 6
+    },
+    {
+     "date": "2026-08-08",
+     "value": 1.2661111111111112,
+     "samples": 5
+    },
+    {
+     "date": "2026-08-10",
+     "value": 1.5952861952861952,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-15",
+     "value": 1.2727272727272727,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-16",
+     "value": 1.1785714285714284,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-18",
+     "value": 1.1681547619047619,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-19",
+     "value": 1.2314814814814816,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-20",
+     "value": 1.2083333333333335,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-21",
+     "value": 1.1256493506493506,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-22",
+     "value": 0.8732804232804234,
+     "samples": 6
+    },
+    {
+     "date": "2026-08-23",
+     "value": 1.0677655677655677,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-25",
+     "value": 1.0909090909090908,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-28",
+     "value": 0.9967261904761906,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-29",
+     "value": 1.1518518518518517,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-30",
+     "value": 1.1916666666666667,
+     "samples": 3
+    },
+    {
+     "date": "2026-09-02",
+     "value": 0.7,
+     "samples": 2
+    },
+    {
+     "date": "2026-09-03",
+     "value": 1.75,
+     "samples": 1
+    }
+   ],
+   "smoothed": [
+    1.2549019607843137,
+    1.220632798573975,
+    1.4026363805608668,
+    1.4019772854206503,
+    1.5014829640654876,
+    1.3668129106041724,
+    1.4684531390419076,
+    1.4474654213695546,
+    1.2219627023908024,
+    1.280980021606006,
+    1.199316251807895,
+    1.1642948780406996,
+    1.1440885872730098,
+    1.1288997737880906,
+    1.204132426576585,
+    1.2478048496519287,
+    1.258401880016831,
+    1.2795372798445186,
+    1.372214013329625,
+    1.2090492198733496,
+    1.2123424704605679,
+    1.3021139957025687,
+    1.265144299438586,
+    1.030725046277835,
+    1.0821238867752812,
+    1.217842915081461,
+    1.1946321863110958,
+    1.3022241397333219,
+    1.0844842532388443,
+    0.8977321102782342,
+    1.1814926376685464,
+    1.2287958023610053,
+    1.387490797619083,
+    1.3377967336270051,
+    1.2815020871563578,
+    1.2248284245305598,
+    1.2277092826967213,
+    1.220858850103332,
+    1.1732541003763413,
+    0.9895584890884903,
+    1.023423147533549,
+    1.0402946333774343,
+    1.0185104119268125,
+    1.0762489491029528,
+    1.1262262868314497,
+    0.9755325379622095,
+    1.1691494034716572
+   ],
+   "slope": -0.0028652249948559875,
+   "slopePerWeek": -0.02005657496399191,
+   "direction": "declining"
+  },
+  {
+   "key": "accuracy",
+   "label": "Accuracy",
+   "unit": "%",
+   "better": "Higher",
+   "points": [
+    {
+     "date": "2026-06-06",
+     "value": 0.44025000000000003,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-07",
+     "value": 0.36064999999999997,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-08",
+     "value": 0.36945,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-10",
+     "value": 0.4017,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-12",
+     "value": 0.4195,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-13",
+     "value": 0.353575,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-14",
+     "value": 0.39072,
+     "samples": 5
+    },
+    {
+     "date": "2026-06-16",
+     "value": 0.32665,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-17",
+     "value": 0.3823,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-20",
+     "value": 0.3649,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-21",
+     "value": 0.39815,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-27",
+     "value": 0.374025,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-28",
+     "value": 0.2891,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-01",
+     "value": 0.3785,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-02",
+     "value": 0.342175,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-03",
+     "value": 0.39270000000000005,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-04",
+     "value": 0.3667,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-05",
+     "value": 0.36805,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-10",
+     "value": 0.39664999999999995,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-11",
+     "value": 0.4181,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-12",
+     "value": 0.305,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-14",
+     "value": 0.3188,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-17",
+     "value": 0.35847500000000004,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-18",
+     "value": 0.3355666666666666,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-19",
+     "value": 0.34425,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-25",
+     "value": 0.4464,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-26",
+     "value": 0.3948,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-29",
+     "value": 0.3748,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-02",
+     "value": 0.377025,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-05",
+     "value": 0.3605666666666667,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-06",
+     "value": 0.3643666666666667,
+     "samples": 6
+    },
+    {
+     "date": "2026-08-08",
+     "value": 0.35768000000000005,
+     "samples": 5
+    },
+    {
+     "date": "2026-08-10",
+     "value": 0.42850000000000005,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-15",
+     "value": 0.41229999999999994,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-16",
+     "value": 0.3599,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-18",
+     "value": 0.41195,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-19",
+     "value": 0.37423333333333336,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-20",
+     "value": 0.45415,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-21",
+     "value": 0.3640749999999999,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-22",
+     "value": 0.37246666666666667,
+     "samples": 6
+    },
+    {
+     "date": "2026-08-23",
+     "value": 0.4098333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-25",
+     "value": 0.421,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-28",
+     "value": 0.395325,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-29",
+     "value": 0.40303333333333335,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-30",
+     "value": 0.40586666666666665,
+     "samples": 3
+    },
+    {
+     "date": "2026-09-02",
+     "value": 0.3796,
+     "samples": 2
+    },
+    {
+     "date": "2026-09-03",
+     "value": 0.4527,
+     "samples": 1
+    }
+   ],
+   "smoothed": [
+    0.44025000000000003,
+    0.40045,
+    0.38948984489160854,
+    0.3925423836687064,
+    0.39928178775152984,
+    0.3764283938757649,
+    0.3844176445761254,
+    0.36399369796964914,
+    0.3685702734772368,
+    0.3672726358449552,
+    0.3781894326345545,
+    0.3761072163172773,
+    0.3453455199822215,
+    0.35363413998666615,
+    0.3479045699933331,
+    0.37030228499666656,
+    0.36902868492221186,
+    0.36868266754964135,
+    0.37857061276331494,
+    0.39254636164891943,
+    0.37065977123668953,
+    0.35769482842751715,
+    0.3580849142137586,
+    0.3483342270015145,
+    0.3462921135007573,
+    0.371319085125568,
+    0.377189313844176,
+    0.376591985383132,
+    0.376808492691566,
+    0.369775575720861,
+    0.366463308908887,
+    0.36155328996197433,
+    0.39054206575833483,
+    0.39996352765191145,
+    0.38579893161145073,
+    0.3988744658057254,
+    0.38820454245617086,
+    0.4115197825650165,
+    0.38779739128250823,
+    0.37840927810852387,
+    0.3920162931658289,
+    0.3992622198743717,
+    0.3972936099371859,
+    0.3997789830730657,
+    0.40241502739419577,
+    0.3943486971024994,
+    0.40893652282687454
+   ],
+   "slope": 0.0003152620547901111,
+   "slopePerWeek": 0.002206834383530778,
+   "direction": "steady"
+  },
+  {
+   "key": "winRate",
+   "label": "Win rate",
+   "unit": "%",
+   "better": "Higher",
+   "points": [
+    {
+     "date": "2026-06-06",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-07",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-08",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-10",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-12",
+     "value": 0,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-13",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-14",
+     "value": 0.4,
+     "samples": 5
+    },
+    {
+     "date": "2026-06-16",
+     "value": 1,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-17",
+     "value": 0,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-20",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-21",
+     "value": 1,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-27",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-28",
+     "value": 0,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-01",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-02",
+     "value": 0.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-03",
+     "value": 0.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-04",
+     "value": 1,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-05",
+     "value": 0,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-10",
+     "value": 0,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-11",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-12",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-14",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-17",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-18",
+     "value": 0,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-19",
+     "value": 0.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-25",
+     "value": 0,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-26",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-29",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-02",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-05",
+     "value": 0,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-06",
+     "value": 0.5,
+     "samples": 6
+    },
+    {
+     "date": "2026-08-08",
+     "value": 0.6,
+     "samples": 5
+    },
+    {
+     "date": "2026-08-10",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-15",
+     "value": 0.6666666666666666,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-16",
+     "value": 0.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-18",
+     "value": 1,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-19",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-20",
+     "value": 1,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-21",
+     "value": 0.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-22",
+     "value": 0,
+     "samples": 6
+    },
+    {
+     "date": "2026-08-23",
+     "value": 0.6666666666666666,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-25",
+     "value": 1,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-28",
+     "value": 0.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-29",
+     "value": 1,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-30",
+     "value": 0.3333333333333333,
+     "samples": 3
+    },
+    {
+     "date": "2026-09-02",
+     "value": 0,
+     "samples": 2
+    },
+    {
+     "date": "2026-09-03",
+     "value": 1,
+     "samples": 1
+    }
+   ],
+   "smoothed": [
+    0.5,
+    0.5,
+    0.5,
+    0.625,
+    0.46875,
+    0.484375,
+    0.4372079410996138,
+    0.6361849817228148,
+    0.4771387362921111,
+    0.48522141358928217,
+    0.6672231282196041,
+    0.5836115641098021,
+    0.3772737168293378,
+    0.5329552876220034,
+    0.6414776438110017,
+    0.6957388219055008,
+    0.8033113930467151,
+    0.519297926332843,
+    0.33569838374981026,
+    0.3937877772550198,
+    0.5453408329412648,
+    0.6590056247059486,
+    0.5795028123529743,
+    0.32857073382187313,
+    0.5392853669109365,
+    0.4044640251832024,
+    0.5533480188874018,
+    0.6650110141655514,
+    0.5825055070827757,
+    0.3302732235937657,
+    0.43420922306444687,
+    0.5268890848820471,
+    0.44307698593715944,
+    0.539894157705062,
+    0.5257894429835746,
+    0.7628947214917873,
+    0.5768891841767227,
+    0.7264814477077286,
+    0.6132407238538643,
+    0.23770900811962134,
+    0.4234531228444375,
+    0.5675898421333281,
+    0.658794921066664,
+    0.8065410541949358,
+    0.6016361004283942,
+    0.38892561721862007,
+    0.541694212913965
+   ],
+   "slope": 0.000016699109503928868,
+   "slopePerWeek": 0.00011689376652750207,
+   "direction": "steady"
+  },
+  {
+   "key": "killsPerMatch",
+   "label": "Kills per match",
+   "unit": "kills",
+   "better": "Higher",
+   "points": [
+    {
+     "date": "2026-06-06",
+     "value": 14,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-07",
+     "value": 11.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-08",
+     "value": 27,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-10",
+     "value": 21,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-12",
+     "value": 27,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-13",
+     "value": 15.25,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-14",
+     "value": 13.4,
+     "samples": 5
+    },
+    {
+     "date": "2026-06-16",
+     "value": 16.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-17",
+     "value": 6,
+     "samples": 1
+    },
+    {
+     "date": "2026-06-20",
+     "value": 11,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-21",
+     "value": 7,
+     "samples": 2
+    },
+    {
+     "date": "2026-06-27",
+     "value": 10.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-06-28",
+     "value": 11,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-01",
+     "value": 13,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-02",
+     "value": 10,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-03",
+     "value": 12.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-04",
+     "value": 11.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-05",
+     "value": 14.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-10",
+     "value": 17,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-11",
+     "value": 7,
+     "samples": 2
+    },
+    {
+     "date": "2026-07-12",
+     "value": 11,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-14",
+     "value": 11,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-17",
+     "value": 11.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-18",
+     "value": 7.666666666666667,
+     "samples": 3
+    },
+    {
+     "date": "2026-07-19",
+     "value": 9.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-07-25",
+     "value": 13,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-26",
+     "value": 9,
+     "samples": 1
+    },
+    {
+     "date": "2026-07-29",
+     "value": 13,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-02",
+     "value": 9.5,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-05",
+     "value": 6.666666666666667,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-06",
+     "value": 13.333333333333334,
+     "samples": 6
+    },
+    {
+     "date": "2026-08-08",
+     "value": 14,
+     "samples": 5
+    },
+    {
+     "date": "2026-08-10",
+     "value": 19,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-15",
+     "value": 11,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-16",
+     "value": 16.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-18",
+     "value": 11.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-19",
+     "value": 19.333333333333332,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-20",
+     "value": 12.5,
+     "samples": 2
+    },
+    {
+     "date": "2026-08-21",
+     "value": 10,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-22",
+     "value": 7.333333333333333,
+     "samples": 6
+    },
+    {
+     "date": "2026-08-23",
+     "value": 9.666666666666666,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-25",
+     "value": 12,
+     "samples": 1
+    },
+    {
+     "date": "2026-08-28",
+     "value": 10.75,
+     "samples": 4
+    },
+    {
+     "date": "2026-08-29",
+     "value": 11,
+     "samples": 3
+    },
+    {
+     "date": "2026-08-30",
+     "value": 11.333333333333334,
+     "samples": 3
+    },
+    {
+     "date": "2026-09-02",
+     "value": 5,
+     "samples": 2
+    },
+    {
+     "date": "2026-09-03",
+     "value": 21,
+     "samples": 1
+    }
+   ],
+   "smoothed": [
+    14,
+    12.75,
+    17.788135815954153,
+    18.591101861965615,
+    20.693326396474212,
+    17.971663198237106,
+    15.41602577786404,
+    15.799268539415916,
+    13.349451404561936,
+    12.518794894444934,
+    10.56760624752508,
+    10.658803123762539,
+    10.779434436216128,
+    11.334575827162096,
+    10.667287913581049,
+    11.708643956790524,
+    11.634877178440439,
+    12.64785106646899,
+    14.186568078285779,
+    11.645732567478454,
+    11.48429942560884,
+    11.363224569206631,
+    11.431612284603315,
+    9.801343010103295,
+    9.775671505051648,
+    10.581753628788736,
+    10.186315221591553,
+    10.889736416193664,
+    10.194868208096832,
+    8.667112125821863,
+    11.524577372161033,
+    12.908380689383307,
+    15.54612922597226,
+    13.57759752668283,
+    14.610822829802284,
+    13.180411414901142,
+    15.844704759333322,
+    14.662173051137566,
+    12.331086525568782,
+    9.270600230233129,
+    9.442102028002036,
+    10.081576521001526,
+    10.415788260500763,
+    10.66875936429848,
+    10.956528334237499,
+    8.850577545502926,
+    11.887933159127194
+   ],
+   "slope": -0.03488460032206802,
+   "slopePerWeek": -0.24419220225447613,
+   "direction": "steady"
+  }
+ ],
+ "recent": [
+  {
+   "id": "d2-0127",
+   "game": "Destiny2",
+   "playedAt": "2026-09-03T20:15:48Z",
+   "duration": "00:08:09",
+   "mode": "Survival",
+   "map": "Burnout",
+   "playlist": "Crucible",
+   "won": true,
+   "kills": 21,
+   "deaths": 12,
+   "assists": 12,
+   "accuracy": 0.4527,
+   "score": 2384,
+   "kda": 2.0833,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 4,
+    "meleeKills": 3
+   },
+   "kd": 1.75
+  },
+  {
+   "id": "d2-0126",
+   "game": "Destiny2",
+   "playedAt": "2026-09-02T20:42:19Z",
+   "duration": "00:11:51",
+   "mode": "Survival",
+   "map": "Burnout",
+   "playlist": "Crucible",
+   "won": false,
+   "kills": 2,
+   "deaths": 5,
+   "assists": 0,
+   "accuracy": 0.3906,
+   "score": 231,
+   "kda": 0.4,
+   "extra": {
+    "superKills": 1,
+    "grenadeKills": 1,
+    "meleeKills": 1
+   },
+   "kd": 0.4
+  },
+  {
+   "id": "d2-0125",
+   "game": "Destiny2",
+   "playedAt": "2026-09-02T20:32:08Z",
+   "duration": "00:06:39",
+   "mode": "Survival",
+   "map": "Burnout",
+   "playlist": "Competitive",
+   "won": false,
+   "kills": 8,
+   "deaths": 8,
+   "assists": 2,
+   "accuracy": 0.3686,
+   "score": 714,
+   "kda": 1.0833,
+   "extra": {
+    "superKills": 2,
+    "grenadeKills": 3,
+    "meleeKills": 1
+   },
+   "kd": 1
+  },
+  {
+   "id": "d2-0124",
+   "game": "Destiny2",
+   "playedAt": "2026-08-30T16:03:08Z",
+   "duration": "00:08:52",
+   "mode": "Control",
+   "map": "Rusted Lands",
+   "playlist": "Competitive",
+   "won": false,
+   "kills": 12,
+   "deaths": 10,
+   "assists": 5,
+   "accuracy": 0.3833,
+   "score": 1197,
+   "kda": 1.3667,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 3,
+    "meleeKills": 2
+   },
+   "kd": 1.2
+  },
+  {
+   "id": "d2-0122",
+   "game": "Destiny2",
+   "playedAt": "2026-08-30T15:38:52Z",
+   "duration": "00:11:05",
+   "mode": "Rumble",
+   "map": "Burnout",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 11,
+   "deaths": 11,
+   "assists": 6,
+   "accuracy": 0.361,
+   "score": 1438,
+   "kda": 1.1818,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 3,
+    "meleeKills": 2
+   },
+   "kd": 1
+  },
+  {
+   "id": "d2-0123",
+   "game": "Destiny2",
+   "playedAt": "2026-08-30T15:25:57Z",
+   "duration": "00:10:27",
+   "mode": "Trials of Osiris",
+   "map": "Widow's Court",
+   "playlist": "Trials",
+   "won": false,
+   "kills": 11,
+   "deaths": 8,
+   "assists": 2,
+   "accuracy": 0.4733,
+   "score": 938,
+   "kda": 1.4583,
+   "extra": {
+    "superKills": 2,
+    "grenadeKills": 2,
+    "meleeKills": 2
+   },
+   "kd": 1.375
+  },
+  {
+   "id": "d2-0121",
+   "game": "Destiny2",
+   "playedAt": "2026-08-29T15:42:33Z",
+   "duration": "00:07:45",
+   "mode": "Iron Banner",
+   "map": "Altar of Flame",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 9,
+   "deaths": 10,
+   "assists": 3,
+   "accuracy": 0.3787,
+   "score": 1161,
+   "kda": 1,
+   "extra": {
+    "superKills": 1,
+    "grenadeKills": 2,
+    "meleeKills": 2
+   },
+   "kd": 0.9
+  },
+  {
+   "id": "d2-0119",
+   "game": "Destiny2",
+   "playedAt": "2026-08-29T15:33:10Z",
+   "duration": "00:09:18",
+   "mode": "Control",
+   "map": "Altar of Flame",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 14,
+   "deaths": 9,
+   "assists": 8,
+   "accuracy": 0.4496,
+   "score": 1790,
+   "kda": 1.8519,
+   "extra": {
+    "superKills": 4,
+    "grenadeKills": 2,
+    "meleeKills": 2
+   },
+   "kd": 1.5556
+  },
+  {
+   "id": "d2-0120",
+   "game": "Destiny2",
+   "playedAt": "2026-08-29T15:21:58Z",
+   "duration": "00:10:37",
+   "mode": "Survival",
+   "map": "Endless Vale",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 10,
+   "deaths": 10,
+   "assists": 5,
+   "accuracy": 0.3808,
+   "score": 1314,
+   "kda": 1.1667,
+   "extra": {
+    "superKills": 2,
+    "grenadeKills": 3,
+    "meleeKills": 2
+   },
+   "kd": 1
+  },
+  {
+   "id": "d2-0118",
+   "game": "Destiny2",
+   "playedAt": "2026-08-28T20:46:33Z",
+   "duration": "00:07:25",
+   "mode": "Iron Banner",
+   "map": "Burnout",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 13,
+   "deaths": 14,
+   "assists": 8,
+   "accuracy": 0.4822,
+   "score": 1684,
+   "kda": 1.119,
+   "extra": {
+    "superKills": 4,
+    "grenadeKills": 2,
+    "meleeKills": 2
+   },
+   "kd": 0.9286
+  },
+  {
+   "id": "d2-0117",
+   "game": "Destiny2",
+   "playedAt": "2026-08-28T20:05:53Z",
+   "duration": "00:08:19",
+   "mode": "Rumble",
+   "map": "Widow's Court",
+   "playlist": "Crucible",
+   "won": true,
+   "kills": 11,
+   "deaths": 10,
+   "assists": 5,
+   "accuracy": 0.331,
+   "score": 1409,
+   "kda": 1.2667,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 2,
+    "meleeKills": 2
+   },
+   "kd": 1.1
+  },
+  {
+   "id": "d2-0116",
+   "game": "Destiny2",
+   "playedAt": "2026-08-28T19:21:29Z",
+   "duration": "00:10:44",
+   "mode": "Survival",
+   "map": "Javelin-4",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 9,
+   "deaths": 8,
+   "assists": 7,
+   "accuracy": 0.4031,
+   "score": 1359,
+   "kda": 1.4167,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 2,
+    "meleeKills": 1
+   },
+   "kd": 1.125
+  },
+  {
+   "id": "d2-0115",
+   "game": "Destiny2",
+   "playedAt": "2026-08-28T19:05:16Z",
+   "duration": "00:10:59",
+   "mode": "Iron Banner",
+   "map": "Burnout",
+   "playlist": "Crucible",
+   "won": false,
+   "kills": 10,
+   "deaths": 12,
+   "assists": 3,
+   "accuracy": 0.365,
+   "score": 979,
+   "kda": 0.9167,
+   "extra": {
+    "superKills": 2,
+    "grenadeKills": 3,
+    "meleeKills": 1
+   },
+   "kd": 0.8333
+  },
+  {
+   "id": "d2-0114",
+   "game": "Destiny2",
+   "playedAt": "2026-08-25T20:36:31Z",
+   "duration": "00:08:08",
+   "mode": "Rumble",
+   "map": "Javelin-4",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 12,
+   "deaths": 11,
+   "assists": 8,
+   "accuracy": 0.421,
+   "score": 1626,
+   "kda": 1.3333,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 2,
+    "meleeKills": 1
+   },
+   "kd": 1.0909
+  },
+  {
+   "id": "d2-0113",
+   "game": "Destiny2",
+   "playedAt": "2026-08-23T16:25:53Z",
+   "duration": "00:08:10",
+   "mode": "Rumble",
+   "map": "Endless Vale",
+   "playlist": "Crucible",
+   "won": true,
+   "kills": 11,
+   "deaths": 13,
+   "assists": 2,
+   "accuracy": 0.3911,
+   "score": 1320,
+   "kda": 0.8974,
+   "extra": {
+    "superKills": 2,
+    "grenadeKills": 2,
+    "meleeKills": 2
+   },
+   "kd": 0.8462
+  },
+  {
+   "id": "d2-0112",
+   "game": "Destiny2",
+   "playedAt": "2026-08-23T15:46:54Z",
+   "duration": "00:07:39",
+   "mode": "Iron Banner",
+   "map": "Burnout",
+   "playlist": "Competitive",
+   "won": false,
+   "kills": 6,
+   "deaths": 7,
+   "assists": 0,
+   "accuracy": 0.3938,
+   "score": 454,
+   "kda": 0.8571,
+   "extra": {
+    "superKills": 2,
+    "grenadeKills": 3,
+    "meleeKills": 1
+   },
+   "kd": 0.8571
+  },
+  {
+   "id": "d2-0111",
+   "game": "Destiny2",
+   "playedAt": "2026-08-23T15:11:06Z",
+   "duration": "00:05:56",
+   "mode": "Survival",
+   "map": "Rusted Lands",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 12,
+   "deaths": 8,
+   "assists": 2,
+   "accuracy": 0.4446,
+   "score": 1394,
+   "kda": 1.5833,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 3,
+    "meleeKills": 2
+   },
+   "kd": 1.5
+  },
+  {
+   "id": "d2-0110",
+   "game": "Destiny2",
+   "playedAt": "2026-08-22T16:40:40Z",
+   "duration": "00:09:00",
+   "mode": "Iron Banner",
+   "map": "Javelin-4",
+   "playlist": "Crucible",
+   "won": false,
+   "kills": 2,
+   "deaths": 3,
+   "assists": 2,
+   "accuracy": 0.3775,
+   "score": 243,
+   "kda": 0.8889,
+   "extra": {
+    "superKills": 0,
+    "grenadeKills": 1,
+    "meleeKills": 1
+   },
+   "kd": 0.6667
+  },
+  {
+   "id": "d2-0109",
+   "game": "Destiny2",
+   "playedAt": "2026-08-22T16:15:18Z",
+   "duration": "00:09:11",
+   "mode": "Rumble",
+   "map": "Rusted Lands",
+   "playlist": "Crucible",
+   "won": false,
+   "kills": 2,
+   "deaths": 9,
+   "assists": 0,
+   "accuracy": 0.4075,
+   "score": 178,
+   "kda": 0.2222,
+   "extra": {
+    "superKills": 2,
+    "grenadeKills": 1,
+    "meleeKills": 0
+   },
+   "kd": 0.2222
+  },
+  {
+   "id": "d2-0106",
+   "game": "Destiny2",
+   "playedAt": "2026-08-22T15:57:36Z",
+   "duration": "00:08:39",
+   "mode": "Iron Banner",
+   "map": "Rusted Lands",
+   "playlist": "Crucible",
+   "won": false,
+   "kills": 12,
+   "deaths": 12,
+   "assists": 4,
+   "accuracy": 0.3661,
+   "score": 1075,
+   "kda": 1.1111,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 3,
+    "meleeKills": 2
+   },
+   "kd": 1
+  },
+  {
+   "id": "d2-0108",
+   "game": "Destiny2",
+   "playedAt": "2026-08-22T15:52:36Z",
+   "duration": "00:09:38",
+   "mode": "Survival",
+   "map": "Altar of Flame",
+   "playlist": "Crucible",
+   "won": false,
+   "kills": 7,
+   "deaths": 10,
+   "assists": 0,
+   "accuracy": 0.3226,
+   "score": 614,
+   "kda": 0.7,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 2,
+    "meleeKills": 2
+   },
+   "kd": 0.7
+  },
+  {
+   "id": "d2-0107",
+   "game": "Destiny2",
+   "playedAt": "2026-08-22T15:50:18Z",
+   "duration": "00:08:46",
+   "mode": "Survival",
+   "map": "Burnout",
+   "playlist": "Crucible",
+   "won": false,
+   "kills": 10,
+   "deaths": 7,
+   "assists": 3,
+   "accuracy": 0.3701,
+   "score": 925,
+   "kda": 1.5714,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 2,
+    "meleeKills": 1
+   },
+   "kd": 1.4286
+  },
+  {
+   "id": "d2-0105",
+   "game": "Destiny2",
+   "playedAt": "2026-08-22T15:35:35Z",
+   "duration": "00:08:19",
+   "mode": "Rumble",
+   "map": "Altar of Flame",
+   "playlist": "Competitive",
+   "won": false,
+   "kills": 11,
+   "deaths": 9,
+   "assists": 6,
+   "accuracy": 0.391,
+   "score": 1084,
+   "kda": 1.4444,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 2,
+    "meleeKills": 1
+   },
+   "kd": 1.2222
+  },
+  {
+   "id": "d2-0104",
+   "game": "Destiny2",
+   "playedAt": "2026-08-21T21:12:07Z",
+   "duration": "00:08:26",
+   "mode": "Control",
+   "map": "Javelin-4",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 11,
+   "deaths": 10,
+   "assists": 8,
+   "accuracy": 0.3396,
+   "score": 1454,
+   "kda": 1.3667,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 2,
+    "meleeKills": 2
+   },
+   "kd": 1.1
+  },
+  {
+   "id": "d2-0102",
+   "game": "Destiny2",
+   "playedAt": "2026-08-21T20:55:01Z",
+   "duration": "00:10:35",
+   "mode": "Survival",
+   "map": "Altar of Flame",
+   "playlist": "Competitive",
+   "won": true,
+   "kills": 17,
+   "deaths": 11,
+   "assists": 8,
+   "accuracy": 0.3559,
+   "score": 1948,
+   "kda": 1.7879,
+   "extra": {
+    "superKills": 3,
+    "grenadeKills": 4,
+    "meleeKills": 3
+   },
+   "kd": 1.5455
+  }
+ ],
+ "breakdowns": [
+  {
+   "key": "maps",
+   "label": "Maps by K/D",
+   "valueLabel": "K/D",
+   "rows": [
+    {
+     "name": "Rusted Lands",
+     "value": 1.3152,
+     "formatted": "1.32",
+     "samples": 27,
+     "share": 0.2126
+    },
+    {
+     "name": "Altar of Flame",
+     "value": 1.3047,
+     "formatted": "1.30",
+     "samples": 13,
+     "share": 0.1024
+    },
+    {
+     "name": "Burnout",
+     "value": 1.246,
+     "formatted": "1.25",
+     "samples": 18,
+     "share": 0.1417
+    },
+    {
+     "name": "Javelin-4",
+     "value": 1.1787,
+     "formatted": "1.18",
+     "samples": 23,
+     "share": 0.1811
+    },
+    {
+     "name": "Endless Vale",
+     "value": 1.1362,
+     "formatted": "1.14",
+     "samples": 27,
+     "share": 0.2126
+    },
+    {
+     "name": "Widow's Court",
+     "value": 1.1309,
+     "formatted": "1.13",
+     "samples": 19,
+     "share": 0.1496
+    }
+   ]
+  },
+  {
+   "key": "modes",
+   "label": "Form by mode",
+   "valueLabel": "Win rate",
+   "rows": [
+    {
+     "name": "Control",
+     "value": 0.64,
+     "formatted": "64.0%",
+     "samples": 25,
+     "share": 0.1969
+    },
+    {
+     "name": "Trials of Osiris",
+     "value": 0.5556,
+     "formatted": "55.6%",
+     "samples": 18,
+     "share": 0.1417
+    },
+    {
+     "name": "Rumble",
+     "value": 0.5417,
+     "formatted": "54.2%",
+     "samples": 24,
+     "share": 0.189
+    },
+    {
+     "name": "Survival",
+     "value": 0.4737,
+     "formatted": "47.4%",
+     "samples": 38,
+     "share": 0.2992
+    },
+    {
+     "name": "Iron Banner",
+     "value": 0.4545,
+     "formatted": "45.5%",
+     "samples": 22,
+     "share": 0.1732
+    }
+   ]
+  }
+ ],
+ "totals": {
+  "matches": 127,
+  "wins": 67,
+  "losses": 60,
+  "timePlayed": "19:27:56",
+  "kills": 1540,
+  "deaths": 1268,
+  "assists": 664,
+  "winRate": 0.5276,
+  "kd": 1.2145
+ },
+ "warnings": [
+  "Synthetic sample data: no Bungie API key is configured, so the dashboard is showing a fixture.",
+  "Private Trials of Osiris carnage reports are unavailable for this account; those matches are counted from the activity history only."
+ ]
+}

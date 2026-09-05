@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!--
+    The HTTP face of the Halo tracker.
+
+    AssemblyName is pinned so the built artefact is halo-career-stats.dll regardless of the
+    project file's name.
+  -->
+  <PropertyGroup>
+    <AssemblyName>halo-career-stats</AssemblyName>
+    <RootNamespace>Eet.Halo.Api</RootNamespace>
+    <UserSecretsId>eet-halo-career-stats</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Halo.Client/Halo.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      Present so the app has a home for local configuration, and gitignored next to it so a
+      token pasted in here can never be committed. There are no credentials in the checked-in
+      appsettings.json and there must never be.
+    -->
+    <None Update="appsettings.Development.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('appsettings.Development.json')" />
+  </ItemGroup>
+</Project>

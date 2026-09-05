@@ -1,0 +1,64 @@
+{
+ "_note": "SYNTHETIC FIXTURE - generated data, not a real player and not a real capture. Shaped to match the wire format of 343's Halo Infinite services so that loading it exercises the tracker's real mapping code. Do not cite any number in here as fact. Endpoint: GET halostats /hi/players/{player}/Matchmade/servicerecord?seasonId=... PROVENANCE WARNING: this endpoint is NOT in halo-endpoint-manifest.json. It is a Waypoint web endpoint known only from traffic capture, so the request shape and this response shape are both weaker evidence than every other fixture here. The client treats a failure from it as expected and aggregates match history instead.",
+ "Subqueries": {
+  "SeasonIds": [
+   "Csr/Seasons/CsrSeason9-1.json"
+  ],
+  "GameVariantCategories": [
+   6,
+   15,
+   11,
+   18,
+   13,
+   14
+  ],
+  "IsRanked": [
+   true,
+   false
+  ],
+  "PlaylistAssetIds": [
+   "edfef3ac-9cbe-4fa2-b949-8f29deafd483",
+   "c1dd57b1-5dc7-5094-aeee-9de0c4b20147"
+  ]
+ },
+ "TimePlayed": "P13DT21H36M34S",
+ "MatchesCompleted": 1412,
+ "Wins": 788,
+ "Losses": 577,
+ "Ties": 35,
+ "DidNotFinish": 12,
+ "CoreStats": {
+  "Score": 2800467,
+  "PersonalScore": 3996007,
+  "RoundsWon": 0,
+  "RoundsLost": 0,
+  "RoundsTied": 0,
+  "Kills": 28005,
+  "Deaths": 20839,
+  "Assists": 11461,
+  "KDA": 10986.1444,
+  "Suicides": 0,
+  "Betrayals": 0,
+  "AverageLifeDuration": "PT58S",
+  "GrenadeKills": 3144,
+  "HeadshotKills": 11861,
+  "MeleeKills": 2499,
+  "PowerWeaponKills": 5867,
+  "ShotsFired": 551598,
+  "ShotsHit": 248100,
+  "Accuracy": 44.9785,
+  "DamageDealt": 15999913,
+  "DamageTaken": 16240130,
+  "CalloutAssists": 0,
+  "VehicleDestroys": 0,
+  "DriverAssists": 0,
+  "Hijacks": 0,
+  "EmpAssists": 0,
+  "MaxKillingSpree": 9337,
+  "Medals": [],
+  "PersonalScores": [],
+  "DeprecatedDamageDealt": 0,
+  "DeprecatedDamageTaken": 0,
+  "Spawns": 20840
+ }
+}

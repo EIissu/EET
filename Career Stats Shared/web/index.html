@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Career stats dashboard for Halo Infinite and Destiny 2: headline form at a glance, and honest trends over time.">
+<title>EET career tracker</title>
+<link rel="stylesheet" href="css/dashboard.css">
+<script>
+  /* Stamp the theme before first paint so a dark reader never gets a white flash.
+     ?theme=dark|light wins over the saved choice, which makes the page easy to
+     screenshot in both modes and to embed with a forced theme. */
+  (function () {
+    var forced = null;
+    try {
+      forced = new URLSearchParams(window.location.search).get('theme');
+    } catch (e) { /* no URLSearchParams: fall through to the saved choice */ }
+    if (forced === 'light' || forced === 'dark') {
+      document.documentElement.setAttribute('data-theme', forced);
+      return;
+    }
+    try {
+      var saved = window.localStorage && window.localStorage.getItem('eet-tracker-theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) { /* private mode: fall back to the OS setting */ }
+  }());
+</script>
+</head>
+<body>
+<a class="visually-hidden" href="#app">Skip to the dashboard</a>
+<div class="page" id="app">
+  <noscript>
+    <div class="panel" style="margin-top:20px">
+      <div class="empty">
+        <div class="empty__title">This dashboard needs JavaScript</div>
+        <p>The charts are drawn in the browser. The API also serves the same data as JSON at
+          <code>/api/career</code> if you would rather read it directly.</p>
+      </div>
+    </div>
+  </noscript>
+</div>
+
+<!--
+  Loaded as ES modules over HTTP. Every file is also written to be valid as a classic
+  script (no import/export syntax; one shared namespace object), because a browser
+  refuses to load a module from a file:// page at all, and the dashboard has to render
+  when it is opened straight off disk. The block below is the only thing that knows
+  about that: if the modules did not run, the same files are re-injected as classic
+  scripts in the same order.
+-->
+<script type="module" src="js/util.js"></script>
+<script type="module" src="js/normalize.js"></script>
+<script type="module" src="js/charts.js"></script>
+<script type="module" src="js/components.js"></script>
+<script type="module" src="js/main.js"></script>
+<script>
+  (function () {
+    var FILES = ['js/util.js', 'js/normalize.js', 'js/charts.js', 'js/components.js', 'js/main.js'];
+    var started = false;
+
+    function loadClassic() {
+      if (started) return;
+      started = true;
+      var index = 0;
+      (function next() {
+        if (index >= FILES.length) return;
+        var script = document.createElement('script');
+        script.src = FILES[index++];
+        script.async = false; // keep execution in source order
+        script.onload = next;
+        script.onerror = function () {
+          document.getElementById('app').textContent =
+            'Could not load ' + script.src + '. The dashboard needs its js/ folder beside index.html.';
+        };
+        document.head.appendChild(script);
+      }());
+    }
+
+    function check() {
+      // main.js sets booted before it does any work, so a runtime error inside the
+      // app never causes a second copy to be injected on top of it.
+      if (window.EET && window.EET.booted) return;
+      loadClassic();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { setTimeout(check, 0); });
+    } else {
+      setTimeout(check, 0);
+    }
+  }());
+</script>
+</body>
+</html>

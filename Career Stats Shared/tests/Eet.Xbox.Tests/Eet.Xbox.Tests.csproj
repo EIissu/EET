@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Tests for the Xbox token chain and achievements client.
+
+    Nothing here touches the network. Every HTTP interaction goes through StubHandler,
+    which asserts on what was sent and answers with a canned body. A test that reached
+    xboxlive.com would need a Microsoft account, would be non-deterministic, and would fail
+    in CI for reasons unrelated to this code.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Eet.Xbox.Tests</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/Eet.Xbox/Eet.Xbox.csproj" />
+    <ProjectReference Include="../../src/Eet.Trackers.Core/Eet.Trackers.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>

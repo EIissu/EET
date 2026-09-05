@@ -1,0 +1,8 @@
+{
+ "_note": "SYNTHETIC FIXTURE - generated data, not a real player and not a real capture. Shaped to match the wire format of 343's Halo Infinite services so that loading it exercises the tracker's real mapping code. Do not cite any number in here as fact. Endpoint: GET halostats /hi/players/{player}/matches/count.",
+ "CustomMatchesPlayedCount": 24,
+ "MatchesPlayedCount": 1436,
+ "MatchmadeMatchesPlayedCount": 1412,
+ "LocalMatchesPlayedCount": 0,
+ "CustomLocalMatchesPlayedCount": 0
+}

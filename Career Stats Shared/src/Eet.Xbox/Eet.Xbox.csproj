@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The Xbox Live token chain, and the achievements client that rides on it.
+
+    This lives in shared/ rather than under halo-career-stats/ because it is a platform
+    concern, not a Halo one: the same three token exchanges produce both the Spartan token
+    Halo needs and the XSTS token achievements.xboxlive.com needs. Only the relying party
+    at the last step differs.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Eet.Xbox</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Eet.Trackers.Core/Eet.Trackers.Core.csproj" />
+  </ItemGroup>
+
+  <!--
+    The fixtures are embedded as well as read from disk.
+
+    Disk wins when it is there, so the owner can edit a fixture and see the change without
+    a rebuild. The embedded copies are what makes "works with zero credentials" a promise
+    rather than a hope: a published build with no source tree next to it still has data to
+    serve. See FixtureStore for the resolution order.
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="../../fixtures/xbox/*.json"
+                      LogicalName="Eet.Xbox.Fixtures.%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Eet.Xbox.Tests" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+# Belt and braces for this tracker specifically. The repository root already ignores
+# bin/, obj/, appsettings.Development.json and .cache/, so this file only covers what
+# those patterns miss.
+
+# The on-disk response cache. Its default home is under LocalApplicationData and never
+# the working tree (HaloDiskCacheHandler.DefaultDirectory enforces that), but
+# Halo:CacheDirectory is a supported setting and pointing it at a relative path is an
+# easy thing to do while debugging. What lands there is recorded API responses: a named
+# player's full match history, keyed by XUID. The root's `.cache/` and
+# `trackers/**/cache/` patterns do not match either of these names.
+halo-cache/
+eet-trackers/
+
+# Local configuration, repeated here so it is ignored wherever in this tracker it is put
+# rather than only next to Program.cs.
+appsettings.Development.json
+appsettings.*.Local.json
+appsettings.*.local.json

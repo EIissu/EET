@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Destiny.Client/Destiny.Client.csproj" />
+    <Project Path="src/Destiny.Api/Destiny.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Destiny.Tests/Destiny.Tests.csproj" />
+  </Folder>
+  <Folder Name="/shared/">
+    <Project Path="../shared/src/Eet.Trackers.Core/Eet.Trackers.Core.csproj" />
+  </Folder>
+</Solution>

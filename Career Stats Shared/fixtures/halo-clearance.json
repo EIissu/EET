@@ -1,0 +1,4 @@
+{
+ "_note": "SYNTHETIC FIXTURE - generated data, not a real player and not a real capture. Shaped to match the wire format of 343's Halo Infinite services so that loading it exercises the tracker's real mapping code. Do not cite any number in here as fact. Endpoint: GET settings /oban/flight-configurations/titles/hi/audiences/RETAIL/active?sandbox=&build=&release=1.3. This is where the 343-clearance header value comes from. Not itself clearance-aware, for obvious reasons.",
+ "FlightConfigurationId": "00000000-0000-4000-8000-000053594e5448"
+}

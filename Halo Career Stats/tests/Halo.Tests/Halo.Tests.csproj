@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    No network anywhere in here. HTTP is exercised through a stub HttpMessageHandler and
+    the data path is exercised through the real fixtures, which is the point of the fixtures
+    being raw API-shaped: these tests run the same deserialisation and mapping the live
+    client runs.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Eet.Halo.Tests</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/Halo.Client/Halo.Client.csproj" />
+    <ProjectReference Include="../../src/Halo.Api/Halo.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- ProblemDetails and the configuration abstractions the API-contract tests assert on. -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,27 @@
+<Solution>
+  <Folder Name="/Career Stats Shared/" />
+  <Folder Name="/Career Stats Shared/src/">
+    <Project Path="Career Stats Shared/src/Eet.Trackers.Core/Eet.Trackers.Core.csproj" />
+    <Project Path="Career Stats Shared/src/Eet.Xbox/Eet.Xbox.csproj" />
+  </Folder>
+  <Folder Name="/Career Stats Shared/tests/">
+    <Project Path="Career Stats Shared/tests/Eet.Trackers.Core.Tests/Eet.Trackers.Core.Tests.csproj" />
+    <Project Path="Career Stats Shared/tests/Eet.Xbox.Tests/Eet.Xbox.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Destiny Career Stats/" />
+  <Folder Name="/Destiny Career Stats/src/">
+    <Project Path="Destiny Career Stats/src/Destiny.Api/Destiny.Api.csproj" />
+    <Project Path="Destiny Career Stats/src/Destiny.Client/Destiny.Client.csproj" />
+  </Folder>
+  <Folder Name="/Destiny Career Stats/tests/">
+    <Project Path="Destiny Career Stats/tests/Destiny.Tests/Destiny.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Halo Career Stats/" />
+  <Folder Name="/Halo Career Stats/src/">
+    <Project Path="Halo Career Stats/src/Halo.Api/Halo.Api.csproj" />
+    <Project Path="Halo Career Stats/src/Halo.Client/Halo.Client.csproj" />
+  </Folder>
+  <Folder Name="/Halo Career Stats/tests/">
+    <Project Path="Halo Career Stats/tests/Halo.Tests/Halo.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The Bungie.net client: HTTP, the ErrorCode envelope, the manifest definition cache,
+    and the mapping from Bungie's vocabulary into Eet.Trackers.Core's CareerSnapshot.
+
+    No package references on purpose. Everything here is BCL, so the project restores and
+    builds on a machine with no network and no NuGet cache, which matters because the
+    whole tracker is meant to run today, with no API key and no setup.
+  -->
+
+  <PropertyGroup>
+    <RootNamespace>Eet.Destiny.Client</RootNamespace>
+    <AssemblyName>Destiny.Client</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../Career Stats Shared/src/Eet.Trackers.Core/Eet.Trackers.Core.csproj" />
+  </ItemGroup>
+
+</Project>

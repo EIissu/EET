@@ -1,0 +1,205 @@
+{
+ "_note": "SYNTHETIC FIXTURE - generated data, not a real player and not a real capture. Shaped to match the wire format of 343's Halo Infinite services so that loading it exercises the tracker's real mapping code. Do not cite any number in here as fact. Endpoints: GET discovery-infiniteugc /hi/maps/{assetId}/versions/{versionId}, /hi/ugcGameVariants/{assetId}/versions/{versionId} and /hi/playlists/{assetId}. ALL CLEARANCE-AWARE. Map names are real Halo Infinite maps; the asset GUIDs are synthesised, not captured, and will not match a live service.",
+ "Recorded": {
+  "767c86a3-4e93-5cee-a53b-73d1a8756529": {
+   "AssetId": "767c86a3-4e93-5cee-a53b-73d1a8756529",
+   "VersionId": "51b8dd4c-9f7e-5bfe-9778-1115bf580de0",
+   "PublicName": "Live Fire",
+   "Description": "Synthetic fixture entry for the map Live Fire.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "f2ae8926-2fba-5b78-aa66-d93a01691b10": {
+   "AssetId": "f2ae8926-2fba-5b78-aa66-d93a01691b10",
+   "VersionId": "b8a043e9-6654-557a-92b1-a8bb9c4fcece",
+   "PublicName": "Recharge",
+   "Description": "Synthetic fixture entry for the map Recharge.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "e0fbd95b-965c-519f-98f9-07fdc3556463": {
+   "AssetId": "e0fbd95b-965c-519f-98f9-07fdc3556463",
+   "VersionId": "6952cdbb-1c77-58bf-bcc4-273f82ade033",
+   "PublicName": "Streets",
+   "Description": "Synthetic fixture entry for the map Streets.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "939e5564-c3f1-534f-927a-d255fe625b53": {
+   "AssetId": "939e5564-c3f1-534f-927a-d255fe625b53",
+   "VersionId": "6c8b0f2b-037e-540c-b82c-52a2652b9433",
+   "PublicName": "Bazaar",
+   "Description": "Synthetic fixture entry for the map Bazaar.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "21f646e1-aa66-56f3-ac88-feb58d5ff008": {
+   "AssetId": "21f646e1-aa66-56f3-ac88-feb58d5ff008",
+   "VersionId": "a74768f5-494d-50ed-9c41-1c2cff05cd51",
+   "PublicName": "Aquarius",
+   "Description": "Synthetic fixture entry for the map Aquarius.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "9b623789-4ed3-5062-9983-8c35849c1ae8": {
+   "AssetId": "9b623789-4ed3-5062-9983-8c35849c1ae8",
+   "VersionId": "4aa840fd-25cc-59c3-9118-d580af2c31d5",
+   "PublicName": "Behemoth",
+   "Description": "Synthetic fixture entry for the map Behemoth.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "8f581f33-bfb7-558d-8447-f63f252286bb": {
+   "AssetId": "8f581f33-bfb7-558d-8447-f63f252286bb",
+   "VersionId": "3d33263b-1e8f-544a-8edf-0a3ad56c6999",
+   "PublicName": "Launch Site",
+   "Description": "Synthetic fixture entry for the map Launch Site.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "d8090d7e-38a7-52b7-857e-ccd749128a5f": {
+   "AssetId": "d8090d7e-38a7-52b7-857e-ccd749128a5f",
+   "VersionId": "dce3e920-f4dd-517c-9e81-d2526c0f7607",
+   "PublicName": "Catalyst",
+   "Description": "Synthetic fixture entry for the map Catalyst.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "0855eb30-c90c-5e62-b192-72cc96312b66": {
+   "AssetId": "0855eb30-c90c-5e62-b192-72cc96312b66",
+   "VersionId": "bab1764d-c19f-5cc3-98c8-d4e1d7a36ac0",
+   "PublicName": "Solitude",
+   "Description": "Synthetic fixture entry for the map Solitude.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "12cb1ee2-3011-586b-938c-92f44fef14af": {
+   "AssetId": "12cb1ee2-3011-586b-938c-92f44fef14af",
+   "VersionId": "05ac0999-faa9-5e25-859f-4795134ac1fd",
+   "PublicName": "Forbidden",
+   "Description": "Synthetic fixture entry for the map Forbidden.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "47531949-c02e-55b4-983f-6cd96afffe47": {
+   "AssetId": "47531949-c02e-55b4-983f-6cd96afffe47",
+   "VersionId": "7ee55bf4-6223-5aaa-9747-23ebb932aeb4",
+   "PublicName": "Argyle",
+   "Description": "Synthetic fixture entry for the map Argyle.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "83920b71-0ea2-580b-abbc-b311d830d822": {
+   "AssetId": "83920b71-0ea2-580b-abbc-b311d830d822",
+   "VersionId": "edcd5908-c1d3-5044-a7ff-0eb78143279f",
+   "PublicName": "Empyrean",
+   "Description": "Synthetic fixture entry for the map Empyrean.",
+   "AssetKind": 2,
+   "Files": null
+  },
+  "676e0293-af6b-557e-8bbc-0f7ee6d0b05c": {
+   "AssetId": "676e0293-af6b-557e-8bbc-0f7ee6d0b05c",
+   "VersionId": "ede5dc39-9eb0-5955-9851-a43d820a123b",
+   "PublicName": "Slayer",
+   "Description": "Synthetic fixture entry for the game variant Slayer.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "a28a2ff4-bd88-5de6-a307-9c3efa3c2c30": {
+   "AssetId": "a28a2ff4-bd88-5de6-a307-9c3efa3c2c30",
+   "VersionId": "6f1183ac-4585-56ed-9245-df84d1508ae9",
+   "PublicName": "Slayer:Ranked",
+   "Description": "Synthetic fixture entry for the game variant Slayer:Ranked.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "632907e1-7f5c-5eee-ad7a-dddb8f05ca15": {
+   "AssetId": "632907e1-7f5c-5eee-ad7a-dddb8f05ca15",
+   "VersionId": "91dc8a35-cc95-533d-95b9-7d44ae9e47df",
+   "PublicName": "Capture the Flag",
+   "Description": "Synthetic fixture entry for the game variant Capture the Flag.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "8d3cfb41-b85c-5294-b12d-48138503251a": {
+   "AssetId": "8d3cfb41-b85c-5294-b12d-48138503251a",
+   "VersionId": "94e774f6-e7dc-5448-ad7e-36b3826d41f7",
+   "PublicName": "Capture the Flag:Ranked",
+   "Description": "Synthetic fixture entry for the game variant Capture the Flag:Ranked.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "1c88367c-e9c2-564c-b7f2-0469b2545a81": {
+   "AssetId": "1c88367c-e9c2-564c-b7f2-0469b2545a81",
+   "VersionId": "e31e185a-aa54-5263-a9d4-daace9a0cc4e",
+   "PublicName": "Strongholds",
+   "Description": "Synthetic fixture entry for the game variant Strongholds.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "e315b932-d9c3-5c66-81fc-2bc1372e64a6": {
+   "AssetId": "e315b932-d9c3-5c66-81fc-2bc1372e64a6",
+   "VersionId": "e61b503b-9871-50ad-8055-94b588b3c6f3",
+   "PublicName": "Strongholds:Ranked",
+   "Description": "Synthetic fixture entry for the game variant Strongholds:Ranked.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "fb4378e3-c9f9-5aa5-94b2-eacd03764bfd": {
+   "AssetId": "fb4378e3-c9f9-5aa5-94b2-eacd03764bfd",
+   "VersionId": "19196ee2-bb8a-5e37-8807-8e57e265b0b4",
+   "PublicName": "Oddball",
+   "Description": "Synthetic fixture entry for the game variant Oddball.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "e5d4743d-0e91-5c03-bc38-752773d82480": {
+   "AssetId": "e5d4743d-0e91-5c03-bc38-752773d82480",
+   "VersionId": "4077844a-5709-5dae-874a-7c9eb32b298f",
+   "PublicName": "Oddball:Ranked",
+   "Description": "Synthetic fixture entry for the game variant Oddball:Ranked.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "7a61bf72-1732-5589-ac2d-d107b1eaf7d3": {
+   "AssetId": "7a61bf72-1732-5589-ac2d-d107b1eaf7d3",
+   "VersionId": "171f5366-528a-5338-b780-9c6f6403217b",
+   "PublicName": "King of the Hill",
+   "Description": "Synthetic fixture entry for the game variant King of the Hill.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "9efae1b2-074c-5374-bc2f-73ab9ab407be": {
+   "AssetId": "9efae1b2-074c-5374-bc2f-73ab9ab407be",
+   "VersionId": "0db2e0bb-231f-54df-a5bd-6768affde00f",
+   "PublicName": "King of the Hill:Ranked",
+   "Description": "Synthetic fixture entry for the game variant King of the Hill:Ranked.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "105422bb-e179-56c7-b34f-f4f4faa13418": {
+   "AssetId": "105422bb-e179-56c7-b34f-f4f4faa13418",
+   "VersionId": "a5cfa8f5-510c-57aa-886b-2f05778b66a7",
+   "PublicName": "Total Control",
+   "Description": "Synthetic fixture entry for the game variant Total Control.",
+   "AssetKind": 6,
+   "Files": null
+  },
+  "edfef3ac-9cbe-4fa2-b949-8f29deafd483": {
+   "AssetId": "edfef3ac-9cbe-4fa2-b949-8f29deafd483",
+   "VersionId": "fe87455b-fc85-5644-998b-733c509f4c33",
+   "PublicName": "Ranked Arena",
+   "Description": "Synthetic fixture entry for the playlist Ranked Arena.",
+   "AssetKind": 3,
+   "Files": null
+  },
+  "c1dd57b1-5dc7-5094-aeee-9de0c4b20147": {
+   "AssetId": "c1dd57b1-5dc7-5094-aeee-9de0c4b20147",
+   "VersionId": "bd8f922d-dcd0-57b7-af7b-91b8d96ebc09",
+   "PublicName": "Quick Play",
+   "Description": "Synthetic fixture entry for the playlist Quick Play.",
+   "AssetKind": 3,
+   "Files": null
+  }
+ }
+}
