@@ -8,6 +8,7 @@ on:
       - "Destiny Career Stats/**"
       - "Career Stats Shared/**"
       - "Career Stats.slnx"
+      - "Career Stats Web/**"
       - ".github/workflows/career-trackers.yml"
   pull_request:
     paths:
@@ -15,6 +16,7 @@ on:
       - "Destiny Career Stats/**"
       - "Career Stats Shared/**"
       - "Career Stats.slnx"
+      - "Career Stats Web/**"
       - ".github/workflows/career-trackers.yml"
   workflow_dispatch:
 
@@ -111,3 +113,39 @@ jobs:
             exit 1
           fi
           echo "none found"
+
+  web:
+    name: react site
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "Career Stats Web"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: "Career Stats Web/package-lock.json"
+
+      - run: npm ci
+
+      # tsc runs as part of build, so a type error fails here rather than at runtime.
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      # The bundle is served to every visitor, so a stray credential in it is a public one.
+      # It should be impossible by construction -- the browser never holds a key -- and this
+      # is the check that keeps it that way.
+      - name: No credentials in the built bundle
+        run: |
+          set -euo pipefail
+          if grep -rIE '(api[_-]?key|client[_-]?secret|refresh_token|x-api-key)["'"'"']?\s*[:=]\s*["'"'"'][A-Za-z0-9_-]{20,}' dist/; then
+            echo "::error::something credential-shaped was bundled into the client"
+            exit 1
+          fi
+          echo "clean"

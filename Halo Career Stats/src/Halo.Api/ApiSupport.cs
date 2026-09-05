@@ -114,6 +114,21 @@ public static class ApiProblems
     public static IResult NotFound(string title, string remedy) =>
         Results.Problem(Build(StatusCodes.Status404NotFound, title, remedy, instance: null));
 
+    /// <summary>
+    /// The 404 for a path under /api that no route claims.
+    ///
+    /// It exists because the single-page fallback would otherwise answer this with
+    /// index.html and HTTP 200. A caller that asked for JSON must get JSON, and a status
+    /// that means what it says, however wrong the path was.
+    /// </summary>
+    public static ProblemDetails UnknownApiRoute(string path) => Build(
+        StatusCodes.Status404NotFound,
+        $"No API route matches \"{path}\".",
+        "This tracker serves GET /api/health, /api/player?q=, /api/career?player= and "
+        + "/api/matches?player=. Everything outside /api is answered with the single-page "
+        + "app instead, which is why this is JSON rather than HTML.",
+        path);
+
     private static ProblemDetails Build(int status, string title, string remedy, string? instance)
     {
         var problem = new ProblemDetails
@@ -173,6 +188,13 @@ public static class CredentialHints
         "XBOX_CLIENT_ID",
         "XBOX_CLIENT_SECRET",
         "XBOX_REFRESH_TOKEN",
+        // The names Eet.Xbox's XboxOptions.FromEnvironment actually reads. Without these
+        // this whole class watched for variables nobody sets, and reported "no configuration
+        // found" to somebody who had configured everything correctly -- the precise
+        // confusion it exists to prevent.
+        "EET_XBOX_CLIENT_ID",
+        "EET_XBOX_TENANT",
+        "EET_XBOX_TOKEN_CACHE",
     ];
 
     public static object Detect(IConfiguration configuration)
@@ -190,5 +212,165 @@ public static class CredentialHints
                 ? "No Xbox Live configuration found, so the tracker is serving fixtures. That is the supported zero-credential mode, not a failure."
                 : "Xbox Live configuration is present. It will only be used once an IXboxAuth implementation is registered in Program.cs -- see the comment there. Until then the tracker still serves fixtures.",
         };
+    }
+}
+
+/// <summary>Which of the two front ends is being served.</summary>
+public enum WebAssetKind
+{
+    /// <summary>The built React single-page app from <c>Career Stats Web/dist</c>.</summary>
+    Spa,
+
+    /// <summary>The dependency-free dashboard from <c>Career Stats Shared/web</c>.</summary>
+    Vanilla,
+}
+
+/// <summary>A resolved front end: where it lives, which one it is, and its entry document.</summary>
+public sealed record WebAssetChoice(string Root, WebAssetKind Kind, string IndexPath)
+{
+    /// <summary>Wording for the startup log, so an operator knows which UI they got.</summary>
+    public string Label => Kind == WebAssetKind.Spa
+        ? "built React app"
+        : "no-build vanilla dashboard";
+}
+
+/// <summary>
+/// Picking a front end.
+///
+/// There are two, and the choice is not a preference: the React app in
+/// <c>Career Stats Web/dist</c> is the product, and the vanilla dashboard in
+/// <c>Career Stats Shared/web</c> is the fallback that works when nobody has run npm. So
+/// the built app wins when it is present and the vanilla one answers when it is not.
+///
+/// "Present" means an index.html, not merely a directory. A <c>dist</c> that exists because
+/// Vite once wrote a sourcemap into it, or because someone made the folder by hand, would
+/// otherwise take precedence over a working dashboard and serve nothing but 404s.
+/// </summary>
+public static class WebAssets
+{
+    public const string SpaDirectory = "Career Stats Web/dist";
+    public const string VanillaDirectory = "Career Stats Shared/web";
+
+    public static WebAssetChoice? Choose(string? spa, string? vanilla, string contentRoot)
+    {
+        return Try(spa, WebAssetKind.Spa) ?? Try(vanilla, WebAssetKind.Vanilla);
+
+        WebAssetChoice? Try(string? configured, WebAssetKind kind)
+        {
+            if (string.IsNullOrWhiteSpace(configured))
+            {
+                return null;
+            }
+
+            var root = StaticAssets.Locate(configured, contentRoot);
+            if (root is null)
+            {
+                return null;
+            }
+
+            var index = Path.Combine(root, "index.html");
+            return File.Exists(index) ? new WebAssetChoice(root, kind, index) : null;
+        }
+    }
+}
+
+/// <summary>
+/// The one line of routing policy that the single-page fallback must not get wrong.
+///
+/// Serving index.html for an unknown path is what makes a deep link work. Serving it for an
+/// unknown <c>/api</c> path is a bug that costs an afternoon: fetch() gets 200 and a lump of
+/// HTML, JSON.parse throws "Unexpected token &lt;", and nothing in that sentence mentions
+/// the URL being wrong. Unknown API routes stay JSON 404s.
+/// </summary>
+public static class ApiRoutes
+{
+    public const string Prefix = "/api";
+
+    /// <summary>
+    /// Segment-aware on purpose: <c>/api/nope</c> and <c>/api</c> are API paths,
+    /// <c>/apiary</c> is a page in the app and must still deep-link.
+    /// </summary>
+    public static bool IsApi(PathString path) =>
+        path.StartsWithSegments(Prefix, StringComparison.OrdinalIgnoreCase);
+}
+
+/// <summary>
+/// Cross-origin access for the Vite dev server, and for nothing else.
+///
+/// In development the React app is served from :5173 by Vite while the API runs on its own
+/// port. The dev proxy in vite.config.ts normally makes that same-origin, but it is one
+/// line of config away from being bypassed, and a developer who does bypass it should get a
+/// working app rather than an opaque CORS failure.
+///
+/// In production there is no CORS at all: the API serves the built app itself, so every
+/// request is same-origin and any cross-origin caller is either a mistake or somebody
+/// else's site spending this operator's Xbox credentials. AllowAnyOrigin would hand that
+/// out to anyone who asked.
+/// </summary>
+public static class DevCors
+{
+    public const string PolicyName = "career-stats-dev";
+
+    public static IReadOnlyList<string> Origins { get; } =
+    [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ];
+
+    /// <summary>Read-only API, so a preflight never needs more than this.</summary>
+    public static IReadOnlyList<string> Methods { get; } = ["GET", "HEAD", "OPTIONS"];
+
+    public static IReadOnlyList<string> Headers { get; } = ["Accept", "Content-Type"];
+}
+
+/// <summary>
+/// Cleaning up what a person actually typed, or pasted, into a search box.
+///
+/// None of this changes what matches: it removes the characters that ride along invisibly
+/// with a copy and paste and that no identifier ever contains. A gamertag copied out of a
+/// web page arrives wrapped in whitespace and, often enough, a zero-width space or a
+/// left-to-right mark; searched verbatim it matches nothing and the failure looks like the
+/// player not existing.
+///
+/// The <c>xuid(...)</c> wrapper is unwrapped for the same reason. It is the form the Halo
+/// services use and the form this API prints back at you, so it is exactly what somebody
+/// copies out of one response and pastes into the next box.
+/// </summary>
+public static class SearchQuery
+{
+    private static readonly char[] Invisible =
+    [
+        '\u200B', // zero width space
+        '\u200C', // zero width non-joiner
+        '\u200D', // zero width joiner
+        '\u2060', // word joiner
+        '\uFEFF', // zero width no-break space / BOM
+        '\u200E', // left-to-right mark
+        '\u200F', // right-to-left mark
+    ];
+
+    public static string Normalize(string? raw)
+    {
+        if (string.IsNullOrEmpty(raw))
+        {
+            return string.Empty;
+        }
+
+        var text = raw;
+        if (text.AsSpan().IndexOfAny(Invisible) >= 0)
+        {
+            text = string.Concat(text.Where(ch => Array.IndexOf(Invisible, ch) < 0));
+        }
+
+        text = text.Trim();
+
+        // Identity.BareXuid owns the wrapper's shape; this only decides whether unwrapping
+        // was the right call. "xuid(2814669301245176)" is an id. A gamertag that happens to
+        // read "xuid(hello)" is a gamertag, and mangling it into "hello" would be worse than
+        // leaving it alone.
+        var bare = Identity.BareXuid(text).Trim();
+        return bare.Length > 0 && bare.Length != text.Length && bare.All(char.IsAsciiDigit)
+            ? bare
+            : text;
     }
 }
