@@ -1,0 +1,136 @@
+; mandelbrot.eet -- the escape-time fractal in 12-bit fixed point.
+;
+; There are no floats in EET, so every value here is a real number times 4096. The
+; multiply-then-shift dance is what a fixed-point FPU looks like when you have to build
+; one out of `mul` and `shr`.
+;
+; This is the program that matters most for conformance: it leans on `mul`, on arithmetic
+; right shift of negative numbers, and on truncating `div`, which is exactly where four
+; languages will disagree if anybody gets section 7 wrong.
+
+.data palette " .:-=+*#%@"
+
+.func main 0 12
+    ; locals: 0=px 1=py 2=zx 3=zy 4=x0 5=y0 6=i 7=zx2 8=zy2 9=tmp 10=shade
+    push 0
+    store 1
+row:
+    load 1
+    push 24
+    ge
+    jnz done
+    push 0
+    store 0
+col:
+    load 0
+    push 64
+    ge
+    jnz endrow
+
+    push -9011           ; x0 = -2.2 + px * 0.0469
+    load 0
+    push 192
+    mul
+    add
+    store 4
+    push -4915           ; y0 = -1.2 + py * 0.0999
+    load 1
+    push 409
+    mul
+    add
+    store 5
+
+    push 0
+    store 2              ; zx = 0
+    push 0
+    store 3              ; zy = 0
+    push 0
+    store 6              ; i  = 0
+
+iter:
+    load 6
+    push 40
+    ge
+    jnz plot
+
+    load 2               ; zx2 = zx*zx >> 12
+    dup
+    mul
+    push 12
+    shr
+    store 7
+    load 3               ; zy2 = zy*zy >> 12
+    dup
+    mul
+    push 12
+    shr
+    store 8
+
+    load 7               ; escaped once |z|^2 > 4.0
+    load 8
+    add
+    push 16384
+    gt
+    jnz plot
+
+    load 2               ; tmp = 2*zx*zy >> 12, folded into a single >>11
+    load 3
+    mul
+    push 11
+    shr
+    load 5
+    add
+    store 9
+    load 7               ; zx = zx2 - zy2 + x0
+    load 8
+    sub
+    load 4
+    add
+    store 2
+    load 9
+    store 3              ; zy = tmp
+
+    load 6
+    push 1
+    add
+    store 6
+    jmp iter
+
+plot:
+    load 6               ; shade = i * 10 / 40, clamped to the last palette slot
+    push 10
+    mul
+    push 40
+    div
+    store 10
+    load 10
+    push 9
+    gt
+    jz shade_ok
+    push 9
+    store 10
+shade_ok:
+    push palette
+    load 10
+    add
+    dload
+    printc
+
+    load 0
+    push 1
+    add
+    store 0
+    jmp col
+
+endrow:
+    push 10
+    printc
+    load 1
+    push 1
+    add
+    store 1
+    jmp row
+done:
+    push 0
+    ret
+.end

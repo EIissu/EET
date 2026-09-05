@@ -1,0 +1,76 @@
+name: conformance
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+# One in-flight run per branch; a newer push makes an older run pointless.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  matrix:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Set up the JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: "10.0.x"
+
+      # Linux and macOS runners already ship cmake and a C++20 compiler; Windows runners
+      # ship MSVC, which cmake finds on its own.
+      - name: Show what this runner can build
+        run: python tools/eet.py list
+
+      - name: Reference runtime unit tests
+        working-directory: runtimes/python
+        run: python -m unittest discover -s tests -t . -v
+
+      - name: .NET unit tests
+        run: dotnet test runtimes/dotnet/Eet.sln -c Release --nologo
+
+      - name: Build every runtime
+        run: python tools/eet.py build
+
+      - name: Conformance matrix
+        run: python tools/eet.py verify --no-build
+
+  goldens-are-reproducible:
+    name: goldens match the reference
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # If regenerating the goldens changes anything, either someone edited a golden by
+      # hand or the reference runtime drifted. Both are things a reviewer needs to see.
+      - name: Regenerate and diff
+        run: |
+          python tools/eet.py golden
+          git diff --exit-code -- tests/conformance/golden \
+            || { echo "::error::goldens differ from the reference runtime's output"; exit 1; }

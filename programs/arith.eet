@@ -1,0 +1,250 @@
+; arith.eet -- the conformance torture test.
+;
+; Every line here is a place where two languages would quietly disagree if section 7 of
+; the spec were not followed to the letter: overflow wrapping, truncating division,
+; sign-following remainder, masked shift counts, arithmetic vs logical right shift, and
+; signed comparison. If a runtime passes this program it is almost certainly correct.
+;
+; Output is `<case>: <value>` per line. The case numbers are the comments below.
+
+.data sep ": "
+
+.func emit 2 2
+    load 0
+    print
+    pushs sep
+    prints
+    load 1
+    print
+    push 10
+    printc
+    push 0
+    ret
+.end
+
+.func main 0 0
+    ; -- wrapping addition and subtraction ------------------------------------------
+    push 1
+    push 2147483647
+    push 1
+    add                     ; 01  int32 max + 1      -> -2147483648
+    call emit
+    pop
+    push 2
+    push -2147483648
+    push 1
+    sub                     ; 02  int32 min - 1      ->  2147483647
+    call emit
+    pop
+    push 3
+    push -2147483648
+    push -2147483648
+    add                     ; 03  min + min          ->  0
+    call emit
+    pop
+
+    ; -- wrapping multiplication ----------------------------------------------------
+    push 4
+    push 65536
+    push 65536
+    mul                     ; 04  2^16 * 2^16        ->  0
+    call emit
+    pop
+    push 5
+    push 123456789
+    push 987654321
+    mul                     ; 05  a big product, wrapped
+    call emit
+    pop
+    push 6
+    push -2147483648
+    push -1
+    mul                     ; 06  min * -1           -> -2147483648
+    call emit
+    pop
+    push 7
+    push -2147483648
+    neg                     ; 07  neg(min)           -> -2147483648
+    call emit
+    pop
+
+    ; -- truncating division, remainder follows the dividend ------------------------
+    push 8
+    push 7
+    push 2
+    div                     ; 08   7 /  2  ->  3
+    call emit
+    pop
+    push 9
+    push -7
+    push 2
+    div                     ; 09  -7 /  2  -> -3  (not -4; Python would floor)
+    call emit
+    pop
+    push 10
+    push 7
+    push -2
+    div                     ; 10   7 / -2  -> -3
+    call emit
+    pop
+    push 11
+    push -7
+    push -2
+    div                     ; 11  -7 / -2  ->  3
+    call emit
+    pop
+    push 12
+    push 7
+    push 2
+    mod                     ; 12   7 %  2  ->  1
+    call emit
+    pop
+    push 13
+    push -7
+    push 2
+    mod                     ; 13  -7 %  2  -> -1
+    call emit
+    pop
+    push 14
+    push 7
+    push -2
+    mod                     ; 14   7 % -2  ->  1
+    call emit
+    pop
+    push 15
+    push -7
+    push -2
+    mod                     ; 15  -7 % -2  -> -1
+    call emit
+    pop
+
+    ; -- the division overflow case: wraps, does not trap ---------------------------
+    push 16
+    push -2147483648
+    push -1
+    div                     ; 16  min / -1  -> -2147483648
+    call emit
+    pop
+    push 17
+    push -2147483648
+    push -1
+    mod                     ; 17  min % -1  ->  0
+    call emit
+    pop
+
+    ; -- shifts: count masked to 5 bits ---------------------------------------------
+    push 18
+    push 1
+    push 31
+    shl                     ; 18  1 << 31   -> -2147483648
+    call emit
+    pop
+    push 19
+    push 1
+    push 32
+    shl                     ; 19  1 << 32   ->  1   (count masks to 0)
+    call emit
+    pop
+    push 20
+    push 1
+    push 33
+    shl                     ; 20  1 << 33   ->  2
+    call emit
+    pop
+    push 21
+    push 1
+    push -1
+    shl                     ; 21  1 << -1   -> -2147483648  (count masks to 31)
+    call emit
+    pop
+
+    ; -- arithmetic vs logical right shift ------------------------------------------
+    push 22
+    push -1
+    push 1
+    shr                     ; 22  -1 >>  1  -> -1
+    call emit
+    pop
+    push 23
+    push -1
+    push 1
+    ushr                    ; 23  -1 >>> 1  ->  2147483647
+    call emit
+    pop
+    push 24
+    push -1
+    push 0
+    ushr                    ; 24  -1 >>> 0  -> -1  (no zero-fill happens)
+    call emit
+    pop
+    push 25
+    push -1
+    push 32
+    ushr                    ; 25  -1 >>> 32 -> -1  (count masks to 0)
+    call emit
+    pop
+    push 26
+    push -2147483648
+    push 31
+    shr                     ; 26  min >>  31 -> -1
+    call emit
+    pop
+    push 27
+    push -2147483648
+    push 31
+    ushr                    ; 27  min >>> 31 ->  1
+    call emit
+    pop
+
+    ; -- bitwise --------------------------------------------------------------------
+    push 28
+    push 0
+    not                     ; 28  ~0        -> -1
+    call emit
+    pop
+    push 29
+    push -1
+    push 255
+    and                     ; 29  -1 & 255  ->  255
+    call emit
+    pop
+    push 30
+    push -1
+    push -1
+    xor                     ; 30  -1 ^ -1   ->  0
+    call emit
+    pop
+
+    ; -- comparisons are signed -----------------------------------------------------
+    push 31
+    push -1
+    push 1
+    lt                      ; 31  -1 <  1   ->  1
+    call emit
+    pop
+    push 32
+    push -1
+    push 1
+    gt                      ; 32  -1 >  1   ->  0  (would be 1 if compared unsigned)
+    call emit
+    pop
+    push 33
+    push 5
+    push 5
+    ge                      ; 33   5 >= 5   ->  1
+    call emit
+    pop
+
+    ; -- decimal formatting of the extremes -----------------------------------------
+    push 34
+    push -2147483648
+    call emit               ; 34  print(min) must not overflow while negating
+    pop
+    push 35
+    push 2147483647
+    call emit               ; 35  print(max)
+    pop
+
+    push 0
+    ret
+.end

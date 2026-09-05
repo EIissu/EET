@@ -1,0 +1,37 @@
+<Project>
+
+  <!--
+    Settings shared by every project in the EET .NET runtime.
+
+    The two that are load bearing rather than merely tidy:
+
+      * InvariantGlobalization. Nothing in EET is locale sensitive - the spec defines
+        output as a byte stream (section 4.6) and decimal rendering digit by digit
+        (section 7.4) - so pinning the culture removes a whole class of "works on my
+        machine" divergence and keeps the NativeAOT image small.
+
+      * TreatWarningsAsErrors. The i32 semantics in section 7 are subtle enough that a
+        silenced warning is a plausible route to a wrong answer.
+  -->
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <Deterministic>true</Deterministic>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <!--
+    Explicitly off. The VM relies on wrapping arithmetic everywhere (spec section 7.1);
+    every operation in Ops.cs also says `unchecked` locally so that the semantics survive
+    someone flipping this flag, but there is no reason to invite the experiment.
+  -->
+  <PropertyGroup>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,41 @@
+# Everything the toolchain generates lives under build/. The glob is deliberately loose:
+# a mistyped or unexpanded shell variable in a build command produces directories like
+# `build$name`, and those are artifacts too, not source.
+/build/
+/build*/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Java
+*.class
+
+# .NET
+bin/
+obj/
+*.user
+.vs/
+
+# C / C++ / CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.o
+*.obj
+*.exe
+*.pdb
+*.ilk
+
+# Assembled modules never belong in the tree; regenerate with `python tools/eet.py asm`.
+*.eetb
+
+# Editors
+.idea/
+.vscode/
+*.swp
+.DS_Store

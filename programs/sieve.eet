@@ -1,0 +1,78 @@
+; sieve.eet -- the Sieve of Eratosthenes over the globals array.
+;
+; `gloadx` / `gstorex` take the index from the stack rather than an immediate, which is
+; what turns the globals array into usable scratch memory (spec section 4.5).
+
+.globals 512
+
+.data hdr "primes below 512:"
+.data sp  " "
+.data nl  "\n"
+
+.func main 0 2                  ; local 0 = i, local 1 = j
+    pushs hdr
+    prints
+
+    push 2
+    store 0
+mark:
+    load 0
+    dup
+    mul                         ; i*i
+    push 512
+    ge
+    jnz sweep                   ; once i*i >= limit, everything left is prime
+    load 0
+    gloadx
+    jnz next_i                  ; already crossed off
+    load 0
+    dup
+    mul
+    store 1                     ; j = i*i
+cross:
+    load 1
+    push 512
+    ge
+    jnz next_i
+    push 1
+    load 1
+    gstorex                     ; globals[j] = 1
+    load 1
+    load 0
+    add
+    store 1                     ; j += i
+    jmp cross
+next_i:
+    load 0
+    push 1
+    add
+    store 0
+    jmp mark
+
+sweep:
+    push 2
+    store 0
+report:
+    load 0
+    push 512
+    ge
+    jnz done
+    load 0
+    gloadx
+    jnz skip
+    pushs sp
+    prints
+    load 0
+    print
+skip:
+    load 0
+    push 1
+    add
+    store 0
+    jmp report
+done:
+    pushs nl
+    prints
+    push 0
+    ret
+.end

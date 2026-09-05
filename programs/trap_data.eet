@@ -1,0 +1,12 @@
+; trap_data.eet -- `prints` validates the whole range, not just the start address.
+.data msg "reading past the data section\n"
+
+.func main 0 0
+    pushs msg
+    prints
+    push msg
+    push 100000             ; msg is nowhere near this long
+    prints                  ; T08
+    push 0
+    ret
+.end

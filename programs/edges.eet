@@ -1,0 +1,78 @@
+; edges.eet -- the boundaries that are legal.
+;
+; Every bounds check in the spec is a `>=` or a `>`, which means there is exactly one
+; valid value sitting right against each limit. Off-by-one errors hide there, and they
+; hide quietly, because the wrong answer is a trap rather than a wrong number. This
+; program touches each of those last-legal values and must run clean.
+
+.globals 4
+.data alpha "ABCDE"
+
+.func take4 4 4
+    load 3                  ; nargs == nlocals, and the last argument slot
+    ret
+.end
+
+.func main 0 8
+    push 3                  ; prints where addr + len is exactly data_len
+    push 2
+    prints
+    push 10
+    printc
+
+    push alpha.len          ; dload of the very last data byte
+    push 1
+    sub
+    dload
+    printc
+    push 10
+    printc
+
+    push 77                 ; the last global, immediate form
+    gstore 3
+    gload 3
+    print
+    push 10
+    printc
+
+    push 88                 ; the last global, computed form
+    push 3
+    gstorex
+    push 3
+    gloadx
+    print
+    push 10
+    printc
+
+    push 99                 ; the last local slot
+    store 7
+    load 7
+    print
+    push 10
+    printc
+
+    push 1
+    push 2
+    push 3
+    push 4
+    call take4
+    print
+    push 10
+    printc
+
+    push 1                  ; a shift by exactly the largest unmasked count
+    push 31
+    shl
+    print
+    push 10
+    printc
+    push -1
+    push 31
+    ushr
+    print
+    push 10
+    printc
+
+    push 0
+    ret
+.end

@@ -1,0 +1,9 @@
+# General rule first: later patterns override earlier ones, so anything that must NOT be
+# normalised has to appear below this line.
+* text=auto eol=lf
+
+# The conformance goldens are byte-exact fixtures. If git ever rewrote their line endings
+# the entire premise of this repository would quietly stop holding.
+tests/conformance/golden/** -text
+*.eetb binary
+*.png binary
