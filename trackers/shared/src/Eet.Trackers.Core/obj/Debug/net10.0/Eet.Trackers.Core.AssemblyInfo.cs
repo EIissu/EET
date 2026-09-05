@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Eet.Trackers.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ee51900b8e8ba531b563b417fb181ec954a5215")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e3a378f08d8fbbcb6ac335308cba47dc019206a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Eet.Trackers.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Eet.Trackers.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

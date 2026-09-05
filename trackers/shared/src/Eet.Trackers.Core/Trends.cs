@@ -87,9 +87,19 @@ public static class Trends
     public readonly record struct Fit(double Slope, double Intercept, double StandardError)
     {
         /// <summary>Slope in standard errors. The larger, the less likely it is noise.</summary>
-        public double T => double.IsNaN(StandardError) || StandardError <= 0
+        /// <remarks>
+        /// Three cases, and conflating the last two is a bug worth naming. A NaN standard
+        /// error means the uncertainty could not be estimated at all (fewer than three
+        /// distinct days), so nothing can be claimed and t is zero. A standard error of
+        /// exactly zero is the opposite situation: the points sit perfectly on the line,
+        /// so the slope is certain and t is infinite. Only a positive standard error is
+        /// the ordinary case.
+        /// </remarks>
+        public double T => double.IsNaN(StandardError)
             ? 0
-            : Slope / StandardError;
+            : StandardError > 0
+                ? Slope / StandardError
+                : Slope == 0 ? 0 : double.PositiveInfinity * Math.Sign(Slope);
 
         public bool IsSignificant => Math.Abs(T) >= SignificanceT;
     }
@@ -141,9 +151,17 @@ public static class Trends
         }
 
         var degreesOfFreedom = points.Count - 2;
-        if (degreesOfFreedom <= 0 || residual <= 0)
+        if (degreesOfFreedom <= 0)
         {
+            // Two points define a line exactly; there is no spare information left to
+            // estimate how wrong it might be.
             return new Fit(slope, intercept, double.NaN);
+        }
+
+        if (residual <= 0)
+        {
+            // Every point is on the line. That is not "unknown uncertainty", it is none.
+            return new Fit(slope, intercept, 0);
         }
 
         var variance = residual / degreesOfFreedom;
