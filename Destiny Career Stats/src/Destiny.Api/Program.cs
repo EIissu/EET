@@ -84,8 +84,15 @@ if (webRoot is not null)
 app.MapGet("/api/health", () => Results.Ok(new
 {
     status = "ok",
-    game = nameof(GameId.Destiny2),
+    game = "destiny-2",
     // The one thing an operator needs at a glance: is this real data or is it fixtures.
+    //
+    // `isFixture` is the field that matters and it is spelled the same way here as in the
+    // Halo tracker's health endpoint and in every CareerSnapshot. Two APIs that share a
+    // career model should not each invent their own way of saying which mode they are in;
+    // CI asserts this exact key, because the zero-credential path is the one promise this
+    // project makes to somebody who has not registered anything yet.
+    isFixture = tracker.IsFixture,
     mode = tracker.IsFixture ? "fixture" : "live",
     source = tracker.IsFixture ? "fixture" : "bungie.net",
     fixtureDirectory = tracker.FixtureDirectory,
