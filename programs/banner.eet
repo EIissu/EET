@@ -7,7 +7,7 @@
 
 .data glyph_e 0x1F, 0x10, 0x1E, 0x10, 0x10, 0x10, 0x1F
 .data glyph_t 0x1F, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04
-.data tagline "\n  Everything Everywhere, Together.\n  One spec. Five runtimes. Zero disagreements.\n"
+.data tagline "\n  Everything Everywhere, Together.\n  One spec. Four languages. Zero disagreements.\n"
 
 ; scanline(base, row) -> the byte for that row of that glyph
 .func scanline 2 2

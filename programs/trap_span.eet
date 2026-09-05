@@ -1,0 +1,18 @@
+; trap_span.eet -- a hostile `prints` range whose bounds check overflows.
+;
+; The address here is perfectly valid and the length is INT32_MAX, so addr + len wraps to
+; a negative number in any 32-bit language. A runtime that checks `addr + len > data_len`
+; literally will sail past the check and read out of bounds. Spec section 4.6 requires the
+; comparison be done without overflowing, and this program is what proves it was.
+
+.data msg "a valid address with an impossible length\n"
+
+.func main 0 0
+    pushs msg
+    prints
+    push 1                  ; a real address inside the data section
+    push 2147483647         ; INT32_MAX; addr + len overflows to negative
+    prints                  ; T08
+    push 0
+    ret
+.end

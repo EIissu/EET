@@ -1,5 +1,8 @@
-# Everything the toolchain generates lives under build/.
+# Everything the toolchain generates lives under build/. The glob is deliberately loose:
+# a mistyped or unexpanded shell variable in a build command produces directories like
+# `build$name`, and those are artifacts too, not source.
 /build/
+/build*/
 
 # Python
 __pycache__/

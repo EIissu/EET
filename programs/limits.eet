@@ -1,0 +1,32 @@
+; limits.eet -- recursion to exactly the deepest legal call stack.
+;
+; The entry frame plus 255 activations of `down` is 256 frames, which is the ceiling in
+; spec section 1. One more would be T03, and trap_depth.eet covers that side. This program
+; covers the side that must *succeed*, which is where off-by-one errors actually live.
+
+.data msg "descending to the deepest legal frame: "
+
+.func down 1 1
+    load 0
+    jz bottom
+    load 0
+    push 1
+    sub
+    call down
+    ret
+bottom:
+    push 0
+    ret
+.end
+
+.func main 0 0
+    pushs msg
+    prints
+    push 254
+    call down
+    print
+    push 10
+    printc
+    push 0
+    ret
+.end

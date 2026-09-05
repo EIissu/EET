@@ -334,11 +334,27 @@ def cmd_verify(args) -> int:
     modules = sorted(BUILT.glob("*.eetb"))
     print(f"  {len(modules)} programs")
 
+    build_failures: List[str] = []
     if not args.no_build:
         print(bold("building runtimes"))
-        build_runtimes([r.key for r in active])
+        results = build_runtimes([r.key for r in active])
+        for key, error in results.items():
+            if error and not error.startswith("skipped"):
+                build_failures.append(
+                    f"{bold(rt.BY_KEY[key].label)} failed to build:\n      "
+                    + error.replace("\n", "\n      ")[:800]
+                )
+        # A runtime that failed to build must not be exercised: whatever is left in its
+        # output directory is a stale binary, and running it would report a pass for code
+        # that is not the code in the tree.
+        broken = {
+            key for key, error in results.items()
+            if error and not error.startswith("skipped")
+        }
+    else:
+        broken = set()
 
-    usable = [r for r in active if r.unavailable() is None]
+    usable = [r for r in active if r.unavailable() is None and r.key not in broken]
     skipped = [r for r in active if r.unavailable() is not None]
 
     print()
@@ -402,11 +418,20 @@ def cmd_verify(args) -> int:
         print(dim(f"  skipped {runtime.label}: {runtime.unavailable()}"))
 
     print()
+    if build_failures:
+        print(red(bold(f"{len(build_failures)} runtime(s) did not build and were NOT checked")))
+        for failure in build_failures:
+            print("  " + failure)
+        print()
+
     if failures:
         print(red(bold(f"{len(failures)} mismatch(es)")))
         for failure in failures:
             print()
             print(failure)
+        return 1
+
+    if build_failures:
         return 1
 
     if missing_golden:

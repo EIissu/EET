@@ -8,6 +8,7 @@
 #####  #####    #
 
   Everything Everywhere, Together.
+  One spec. Four languages. Zero disagreements.
 ```
 
 # EET
@@ -151,21 +152,42 @@ conformance matrix
                 Python          Java            C# / .NET       C++
 arith           ok              ok              ok              ok
 banner          ok              ok              ok              ok
+edges           ok              ok              ok              ok
 fib             ok              ok              ok              ok
 hello           ok              ok              ok              ok
 life            ok              ok              ok              ok
+limits          ok              ok              ok              ok
 mandelbrot      ok              ok              ok              ok
 sieve           ok              ok              ok              ok
 trap_data       ok              ok              ok              ok
 trap_depth      ok              ok              ok              ok
 trap_div0       ok              ok              ok              ok
+trap_falloff    ok              ok              ok              ok
 trap_global     ok              ok              ok              ok
+trap_span       ok              ok              ok              ok
 trap_underflow  ok              ok              ok              ok
 trap_user       ok              ok              ok              ok
+
+malformed input
+                    Python          Java            C# / .NET       C++
+empty               ok              ok              ok              ok
+bad-magic           ok              ok              ok              ok
+flags-set           ok              ok              ok              ok
+code-len-overflows  ok              ok              ok              ok
+...
+
+all 136 checks passed across 4 runtime(s)  (68 program, 68 malformed)
 ```
 
 Programs named `trap_*` are supposed to fail. Their goldens capture the exact stderr line
 and the exit status, because *how* a machine breaks is part of its behaviour too.
+
+The **malformed corpus** is the other half. The assembler can only ever emit valid
+modules, so nothing in `programs/` can tell you what a runtime does when handed a hostile
+file. `tools/malformed.py` builds one image per rejection the spec requires — bad magic, a
+reserved flag bit set, an entry point outside the code, and two whose declared section
+lengths are large enough to wrap a 32-bit offset calculation — and every runtime must
+refuse all of them with exit 65.
 
 ## What's here
 
@@ -175,12 +197,18 @@ spec/eet-vm.md          the authority: machine model, binary format, every instr
 programs/               EET programs, and the conformance corpus
 runtimes/python/        reference implementation + the assembler and disassembler
 runtimes/java/          Java 17, javac only, no build tool
-runtimes/dotnet/        a real .NET solution: class library, CLI, xUnit tests
+runtimes/dotnet/        a real .NET solution: class library, CLI, 117 xUnit tests
 runtimes/cpp/           C++20 and CMake
 tools/eet.py            build, run, benchmark, verify
+tools/runtimes.py       the runtime registry -- one entry per language
+tools/malformed.py      hostile images the assembler could never produce
 tests/conformance/      the goldens -- byte-exact fixtures
 docs/assembly.md        how to write EET assembly
 ```
+
+Nothing outside `runtimes/python` has a dependency. Java builds with `javac` and no build
+tool, C++ links only the standard library, and the .NET solution takes nothing beyond the
+test packages. The only thing you install to work on EET is a compiler.
 
 ## The machine, briefly
 
@@ -206,11 +234,25 @@ fails if the code has drifted from the prose.
 
 ## Benchmarks
 
-Same bytecode, four runtimes:
+Same bytecode, same output, four runtimes:
 
 ```bash
 python tools/eet.py bench
 ```
+
+Best of five, wall time in milliseconds, process startup included because that is what you
+actually wait for:
+
+| | mandelbrot | life | sieve | fib | |
+|---|---:|---:|---:|---:|---|
+| **C++** | 9.8 | 12.3 | 4.8 | 6.4 | 1.0× |
+| **C# / .NET** | 44.7 | 49.7 | 42.5 | 47.0 | 4–9× |
+| **Java** | 75.8 | 123.5 | 52.6 | 78.7 | 8–12× |
+| **Python** | 424.3 | 1127.4 | 70.1 | 307.7 | 15–92× |
+
+The managed runtimes are dominated by startup on the short programs and close the gap on
+the long ones — `sieve` is 9× on .NET where `life` is 4×, and that inversion is entirely
+process launch. Measured on Windows 11, .NET 10, JDK 21, MSVC 14.51, CPython 3.14.
 
 ## Add your own language
 

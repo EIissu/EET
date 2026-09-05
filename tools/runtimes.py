@@ -124,6 +124,13 @@ JAVA = Runtime(
 
 _CSPROJ = "runtimes/dotnet/src/Eet.Cli/Eet.Cli.csproj"
 
+# Not "dotnet". The SDK forwards `-o <path>` to MSBuild as a bare `PublishDir=<path>`
+# token with no `--property:` prefix, and MSBuild then mis-parses a value whose final
+# segment is literally `dotnet` as a second project, failing with MSB1008. Verified on
+# SDK 10.0.400: `build/dotnetx`, `build/mydotnet` and `build/DOTNET` all publish fine,
+# `build/dotnet` and `build/anything/dotnet` do not. The directory name is load bearing.
+_PUBLISH_DIR = "csharp"
+
 
 def _dotnet_build() -> List[Sequence[str]]:
     return [
@@ -134,7 +141,7 @@ def _dotnet_build() -> List[Sequence[str]]:
             "-c",
             "Release",
             "-o",
-            str(BUILD / "dotnet"),
+            str(BUILD / _PUBLISH_DIR),
             "--nologo",
             "-v",
             "quiet",
@@ -143,7 +150,7 @@ def _dotnet_build() -> List[Sequence[str]]:
 
 
 def _dotnet_run(program: Path) -> List[str]:
-    return [str(BUILD / "dotnet" / f"eet{EXE}"), "run", str(program)]
+    return [str(BUILD / _PUBLISH_DIR / f"eet{EXE}"), "run", str(program)]
 
 
 DOTNET = Runtime(
@@ -167,7 +174,7 @@ def _aot_build() -> List[Sequence[str]]:
             "Release",
             "-p:PublishAot=true",
             "-o",
-            str(BUILD / "dotnet-aot"),
+            str(BUILD / (_PUBLISH_DIR + "-aot")),
             "--nologo",
             "-v",
             "quiet",
@@ -176,7 +183,7 @@ def _aot_build() -> List[Sequence[str]]:
 
 
 def _aot_run(program: Path) -> List[str]:
-    return [str(BUILD / "dotnet-aot" / f"eet{EXE}"), "run", str(program)]
+    return [str(BUILD / (_PUBLISH_DIR + "-aot") / f"eet{EXE}"), "run", str(program)]
 
 
 DOTNET_AOT = Runtime(

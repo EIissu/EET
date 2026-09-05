@@ -1,0 +1,14 @@
+; trap_falloff.eet -- a function with no `ret`.
+;
+; There is no implicit return in EET, so control runs off the end of the code section.
+; That is T09, and spec section 6 pins the reported pc to the out-of-range address itself
+; because there is no trapping instruction to point at.
+
+.data msg "this function forgets to return\n"
+
+.func main 0 0
+    pushs msg
+    prints
+    push 1
+    pop
+.end

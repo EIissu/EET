@@ -66,6 +66,21 @@ trap (`trap_*`). Adding a seventh way to print "hello" does not help.
 If your program is meant to fail, name it `trap_*` and let the goldens capture the
 stderr line and the exit status — that is a conformance test too, and a valuable one.
 
+## Adding a malformed image
+
+`programs/` can only ever hold valid modules, because the assembler is what produces it.
+Everything a loader must *reject* lives in `tools/malformed.py` instead — one handcrafted
+image per rejection in spec section 2, checked against every runtime by `verify`.
+
+Add a `Case` there when you find a shape the spec rejects and the corpus does not cover.
+The bar is exit 65 with an `eet: bad binary:` prefix and nothing on stdout; the reason text
+is deliberately unspecified, so runtimes may word it however they like.
+
+The two worth studying are `code-len-overflows` and `data-len-overflows`, whose declared
+section lengths are large enough to wrap a 32-bit offset calculation. A runtime that adds
+an offset to a length and compares the result passes every well-behaved program and reads
+out of bounds on those two.
+
 ## Adding a runtime
 
 This is the fun one, and it is deliberately easy:
